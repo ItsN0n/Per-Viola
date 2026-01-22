@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vuoi essere il mio Valentine? 💖</title>  <!-- Font romantici -->  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #ffe4ec, #ffd1e3);
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* Cuoricini di sfondo */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(#ff9bbf 1.5px, transparent 1.5px);
+      background-size: 30px 30px;
+      opacity: 0.25;
+      z-index: 0;
+    }
+
+    .screen {
+      position: relative;
+      z-index: 1;
+      width: 90%;
+      max-width: 420px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 24px;
+      padding: 32px 24px 36px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(255, 105, 180, 0.25);
+      animation: fadeIn 0.6s ease;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #ff4f8b;
+      font-size: 2.1rem;
+      margin-bottom: 16px;
+    }
+
+    .emoji-line {
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+    }
+
+    .buttons {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 14px 26px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    .yes {
+      background: linear-gradient(135deg, #ff6fae, #ff4f8b);
+      color: white;
+      box-shadow: 0 10px 20px rgba(255, 79, 139, 0.4);
+    }
+
+    .no {
+      background: #ffe1ec;
+      color: #ff4f8b;
+    }
+
+    .big {
+      transform: scale(1.15);
+    }
+
+    .small {
+      transform: scale(0.85);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .final h1 {
+      font-size: 2.3rem;
+    }
+
+    .final p {
+      font-size: 1.2rem;
+      color: #ff4f8b;
+    }
+
+    .gif {
+      width: 100%;
+      max-width: 260px;
+      border-radius: 16px;
+      margin: 16px auto 20px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style></head>
+<body>  <!-- SCHERMATE -->  <div id="screen" class="screen"></div>  <script>
+    // === DATI DELLE SCHERMATE ===
+    const steps = [
+      {
+        question: "Vuoi essere il mio Valentine? 💕",
+        emojis: "💖💘",
+        yesBig: false
+      },
+      {
+        question: "Sei proprio sicura sicura? 🥺",
+        emojis: "🥰💞✨",
+        yesBig: true
+      },
+      {
+        question: "Ultima possibilità… 💗",
+        emojis: "💓😍💌",
+        yesBig: true
+      }
+    ];
+
+    let currentStep = 0;
+    const screen = document.getElementById('screen');
+
+    function renderStep() {
+      const step = steps[currentStep];
+
+      screen.innerHTML = `
+        <h1>${step.question}</h1>
+        <div class="emoji-line">${step.emojis}</div>
+        <div class="buttons">
+          <button id="yesBtn" class="yes ${step.yesBig ? 'big' : ''}">Sì 💘</button>
+          <button id="noBtn" class="no ${step.yesBig ? 'small' : ''}">No 🙈</button>
+        </div>
+      `;
+
+      const yesBtn = document.getElementById('yesBtn');
+      const noBtn = document.getElementById('noBtn');
+
+      // === LOGICA GIOCOSA ===
+      yesBtn.addEventListener('click', () => handleClick('yes'));
+      noBtn.addEventListener('click', () => handleClick('no'));
+    }
+
+    function handleClick(choice) {
+      // Inversione temporanea dei bottoni
+      //aiuto di CHATGPT
+      const yesBtn = document.getElementById('yesBtn');
+      const noBtn = document.getElementById('noBtn');
+
+      yesBtn.textContent = choice === 'yes' ? 'No 🙈' : 'Sì 💘';
+      noBtn.textContent = choice === 'yes' ? 'Sì 💘' : 'No 🙈';
+
+      setTimeout(() => {
+        currentStep++;
+        if (currentStep < steps.length) {
+          renderStep();
+        } else {
+          renderFinal();
+        }
+      }, 700);
+    }
+
+    function renderFinal() {
+      screen.classList.add('final');
+      screen.innerHTML = `
+        <h1>SIIIII 💖💖💖</h1>
+        <img class="gif" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="love gif">
+        <p>
+          Non vedo l'ora di passare San Valentino con te 😍💘<br>
+          Non vedo l'oraaaaaa 💕💞💓
+        </p>
+      `;
+    }
+
+    // Avvio
+    renderStep();
+  </script></body>
+</html>
