@@ -1,201 +1,463 @@
-<!DOCTYPE html><html lang="it">
+<!DOCTYPE html>
+<html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vuoi essere il mio Valentine? 💖</title>  <!-- Font romantici -->  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">  <style>
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      background: linear-gradient(180deg, #ffe4ec, #ffd1e3);
-      font-family: 'Quicksand', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    /* Cuoricini di sfondo */
-    body::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(#ff9bbf 1.5px, transparent 1.5px);
-      background-size: 30px 30px;
-      opacity: 0.25;
-      z-index: 0;
-    }
-
-    .screen {
-      position: relative;
-      z-index: 1;
-      width: 90%;
-      max-width: 420px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 24px;
-      padding: 32px 24px 36px;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(255, 105, 180, 0.25);
-      animation: fadeIn 0.6s ease;
-    }
-
-    h1 {
-      font-family: 'Pacifico', cursive;
-      color: #ff4f8b;
-      font-size: 2.1rem;
-      margin-bottom: 16px;
-    }
-
-    .emoji-line {
-      font-size: 1.6rem;
-      margin-bottom: 16px;
-    }
-
-    .buttons {
-      margin-top: 28px;
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-    }
-
-    button {
-      border: none;
-      border-radius: 999px;
-      padding: 14px 26px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    button:active {
-      transform: scale(0.95);
-    }
-
-    .yes {
-      background: linear-gradient(135deg, #ff6fae, #ff4f8b);
-      color: white;
-      box-shadow: 0 10px 20px rgba(255, 79, 139, 0.4);
-    }
-
-    .no {
-      background: #ffe1ec;
-      color: #ff4f8b;
-    }
-
-    .big {
-      transform: scale(1.15);
-    }
-
-    .small {
-      transform: scale(0.85);
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .final h1 {
-      font-size: 2.3rem;
-    }
-
-    .final p {
-      font-size: 1.2rem;
-      color: #ff4f8b;
-    }
-
-    .gif {
-      width: 100%;
-      max-width: 260px;
-      border-radius: 16px;
-      margin: 16px auto 20px;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style></head>
-<body>  <!-- SCHERMATE -->  <div id="screen" class="screen"></div>  <script>
-    // === DATI DELLE SCHERMATE ===
-    const steps = [
-      {
-        question: "Vuoi essere il mio Valentine? 💕",
-        emojis: "💖💘",
-        yesBig: false
-      },
-      {
-        question: "Sei proprio sicura sicura? 🥺",
-        emojis: "🥰💞✨",
-        yesBig: true
-      },
-      {
-        question: "Ultima possibilità… 💗",
-        emojis: "💓😍💌",
-        yesBig: true
-      }
-    ];
-
-    let currentStep = 0;
-    const screen = document.getElementById('screen');
-
-    function renderStep() {
-      const step = steps[currentStep];
-
-      screen.innerHTML = `
-        <h1>${step.question}</h1>
-        <div class="emoji-line">${step.emojis}</div>
-        <div class="buttons">
-          <button id="yesBtn" class="yes ${step.yesBig ? 'big' : ''}">Sì 💘</button>
-          <button id="noBtn" class="no ${step.yesBig ? 'small' : ''}">No 🙈</button>
-        </div>
-      `;
-
-      const yesBtn = document.getElementById('yesBtn');
-      const noBtn = document.getElementById('noBtn');
-
-      // === LOGICA GIOCOSA ===
-      yesBtn.addEventListener('click', () => handleClick('yes'));
-      noBtn.addEventListener('click', () => handleClick('no'));
-    }
-
-    function handleClick(choice) {
-      // Inversione temporanea dei bottoni
-      //aiuto di CHATGPT
-      const yesBtn = document.getElementById('yesBtn');
-      const noBtn = document.getElementById('noBtn');
-
-      yesBtn.textContent = choice === 'yes' ? 'No 🙈' : 'Sì 💘';
-      noBtn.textContent = choice === 'yes' ? 'Sì 💘' : 'No 🙈';
-
-      setTimeout(() => {
-        currentStep++;
-        if (currentStep < steps.length) {
-          renderStep();
-        } else {
-          renderFinal();
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Per la mia Viola 💜</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           VARIABILI E RESET
+           ========================================= */
+        :root {
+            --cream: #FFF8F0;
+            --lavender: #F3E5F5;
+            --lilac: #E1BEE7;
+            --wisteria: #CE93D8;
+            --dark-purple: #4A148C;
+            --btn-hover: #7B1FA2;
+            --white: #FFFFFF;
+            --pink-glow: #ff4081;
         }
-      }, 700);
-    }
 
-    function renderFinal() {
-      screen.classList.add('final');
-      screen.innerHTML = `
-        <h1>SIIIII 💖💖💖</h1>
-        <img class="gif" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="love gif">
-        <p>
-          Non vedo l'ora di passare San Valentino con te 😍💘<br>
-          Non vedo l'oraaaaaa 💕💞💓
-        </p>
-      `;
-    }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Quicksand', sans-serif; }
 
-    // Avvio
-    renderStep();
-  </script></body>
+        body {
+            background-color: var(--lavender);
+            color: var(--dark-purple);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* --- Sfondo Animato --- */
+        .floating-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; overflow: hidden; }
+        .float-item { position: absolute; bottom: -50px; animation: floatUp linear infinite; opacity: 0.5; }
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* --- Testi e Titoli --- */
+        header { margin-top: 40px; margin-bottom: 40px; }
+        h1 { font-size: 2.8rem; animation: pulse 2s infinite alternate; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
+        @keyframes pulse { 0% { transform: scale(1); } 100% { transform: scale(1.05); } }
+        h2 { font-size: 1.2rem; font-weight: 600; color: var(--btn-hover); margin-top: 10px; }
+        .section-title { font-size: 2rem; margin: 50px 0 30px 0; border-bottom: 3px dashed var(--lilac); display: inline-block; padding-bottom: 5px; }
+
+        /* --- Contatore --- */
+        .counter-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; }
+        .time-box { background: var(--white); border-radius: 15px; padding: 15px 20px; box-shadow: 0 8px 20px rgba(206, 147, 216, 0.4); min-width: 80px; border: 2px solid var(--lilac); }
+        .time-box span { font-size: 2rem; font-weight: 700; color: var(--btn-hover); }
+        .time-box p { font-size: 0.8rem; text-transform: uppercase; margin-top: 5px; }
+
+        /* --- Bottoni Base --- */
+        .btn {
+            background-color: var(--wisteria); color: var(--dark-purple); border: none; padding: 15px 30px;
+            font-size: 1.1rem; font-weight: 700; border-radius: 50px; cursor: pointer; transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(206, 147, 216, 0.5); margin: 10px;
+        }
+        .btn:hover { background-color: var(--btn-hover); color: var(--white); transform: translateY(-3px); }
+
+        /* --- Box Layout (Staccati meglio) --- */
+        .box-section { background: var(--white); padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(206,147,216,0.3); max-width: 600px; width: 100%; margin-bottom: 50px; }
+        .box-section.cream { background: var(--cream); }
+        
+        /* Amore-Metro */
+        .meter-bar { width: 100%; height: 30px; background: #ddd; border-radius: 15px; overflow: hidden; margin: 20px 0; position: relative; }
+        .meter-fill { width: 0%; height: 100%; background: linear-gradient(90deg, var(--lilac), var(--dark-purple)); transition: width 2s cubic-bezier(0.4, 0, 0.2, 1); }
+        .meter-text { font-size: 1.5rem; font-weight: bold; color: var(--dark-purple); transition: all 0.5s ease; }
+        .shake { animation: crazyShake 0.5s infinite; color: var(--pink-glow) !important; text-shadow: 0 0 10px var(--pink-glow); }
+        @keyframes crazyShake { 0% { transform: translate(2px, 1px); } 20% { transform: translate(-3px, 0px); } 40% { transform: translate(1px, -1px); } 60% { transform: translate(-3px, 1px); } 80% { transform: translate(-1px, -1px); } 100% { transform: translate(1px, -2px); } }
+
+        /* Generatore */
+        #smile-result { margin-top: 20px; font-size: 1.3rem; font-weight: 600; color: var(--btn-hover); min-height: 80px; display: flex; align-items: center; justify-content: center; font-style: italic; padding: 0 10px; }
+
+        /* --- Galleria Polaroid --- */
+        .gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; max-width: 1000px; margin-bottom: 50px; }
+        .polaroid { background: var(--white); padding: 15px 15px 30px 15px; border-radius: 5px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); width: 280px; transition: transform 0.3s ease; }
+        .polaroid:nth-child(1) { transform: rotate(-3deg); }
+        .polaroid:nth-child(2) { transform: rotate(2deg); }
+        .polaroid:nth-child(3) { transform: rotate(-1deg); }
+        .polaroid:hover { transform: scale(1.05) rotate(0deg); z-index: 10; }
+        .photo-placeholder { width: 100%; height: 250px; background-color: var(--lilac); border-radius: 3px; margin-bottom: 15px; background-size: cover; background-position: center; background-repeat: no-repeat; }
+
+        /* --- La Playlist (Giradischi) --- */
+        .playlist-sec { display: flex; flex-direction: column; align-items: center; }
+        .record-player { width: 150px; height: 150px; background: #222; border-radius: 50%; border: 5px solid #111; display: flex; justify-content: center; align-items: center; position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.3); margin-bottom: 20px; }
+        .record-center { width: 50px; height: 50px; background: var(--wisteria); border-radius: 50%; border: 2px solid var(--white); display: flex; justify-content: center; align-items: center; }
+        .record-hole { width: 10px; height: 10px; background: var(--white); border-radius: 50%; }
+        .spin { animation: spinRecord 3s linear infinite; }
+        @keyframes spinRecord { 100% { transform: rotate(360deg); } }
+        .song-info { font-weight: bold; font-size: 1.3rem; margin-bottom: 5px; color: var(--dark-purple); }
+        .song-artist { font-size: 1rem; opacity: 0.8; margin-bottom: 15px; font-style: italic; }
+
+        /* --- I Coupon dell'Amore --- */
+        .coupons-sec { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 900px; margin-bottom: 50px; }
+        .coupon { background: linear-gradient(135deg, var(--white), var(--lavender)); border: 2px dashed var(--wisteria); border-radius: 10px; width: 220px; padding: 20px; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .coupon:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(206,147,216,0.4); }
+        .coupon.redeemed { background: #eee; border-color: #ccc; color: #999; transform: none; cursor: not-allowed; }
+        .coupon.redeemed::after { content: "RISCATTATO"; position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%) rotate(-20deg); font-size: 1.8rem; font-weight: bold; color: rgba(255,0,0,0.3); border: 3px solid rgba(255,0,0,0.3); padding: 5px 10px; border-radius: 5px; }
+
+        /* --- Il Quiz di Coppia --- */
+        .quiz-question { font-size: 1.3rem; font-weight: bold; margin-bottom: 20px; color: var(--dark-purple); }
+        .quiz-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+        .quiz-btn { background-color: var(--wisteria); color: var(--dark-purple); font-weight: bold; padding: 12px 20px; border: none; border-radius: 30px; cursor: pointer; transition: 0.3s; }
+        .quiz-btn:hover { background-color: var(--btn-hover); color: white; }
+        .quiz-feedback { margin-top: 15px; font-weight: bold; font-size: 1.1rem; min-height: 30px; }
+        #next-quiz-btn { display: none; background-color: #4CAF50; color: white; margin-top: 15px; padding: 10px 20px; border-radius: 20px; border: none; font-weight: bold; cursor: pointer; }
+
+        /* --- La Lettera Segreta --- */
+        .letter-sec { margin: 40px 0; cursor: pointer; }
+        .envelope { width: 300px; height: 200px; background: var(--wisteria); position: relative; margin: 0 auto; border-radius: 0 0 10px 10px; box-shadow: 0 15px 30px rgba(0,0,0,0.2); transition: transform 0.3s; }
+        .envelope:hover { transform: translateY(-5px); }
+        .envelope-flap { position: absolute; top: 0; left: 0; border-left: 150px solid transparent; border-right: 150px solid transparent; border-top: 100px solid var(--btn-hover); z-index: 3; transform-origin: top; transition: transform 0.5s ease; }
+        .envelope-body { position: absolute; bottom: 0; width: 100%; height: 100%; border-left: 150px solid var(--lilac); border-right: 150px solid var(--lilac); border-bottom: 100px solid var(--wisteria); z-index: 2; border-radius: 0 0 10px 10px; }
+        .letter { position: absolute; bottom: 10px; left: 5%; width: 90%; background: var(--white); padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 1; transition: transform 0.8s ease; font-size: 0.9rem; text-align: left; overflow: hidden; height: 180px; border-radius: 5px; }
+        .envelope.open .envelope-flap { transform: rotateX(180deg); z-index: 0; }
+        .envelope.open .letter { transform: translateY(-150px); z-index: 4; height: auto; padding-bottom: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+
+        /* --- IL BOTTONE FUGGITIVO (LA GABBIA MAGICA FIXATA) --- */
+        .runaway-cage {
+            position: relative;
+            background: var(--cream);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 600px;
+            height: 350px; 
+            margin-top: 50px;
+            box-shadow: 0 10px 25px rgba(206, 147, 216, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 30px;
+            overflow: hidden; 
+        }
+        .buttons-wrapper { display: flex; gap: 20px; position: relative; height: 60px; margin-top: 20px; width: 100%; justify-content: center; }
+        .btn-yes { background-color: #4CAF50; color: white; z-index: 2; }
+        .btn-no { background-color: #F44336; color: white; position: relative; z-index: 10; transition: left 0.3s ease, top 0.3s ease; }
+
+        /* --- BOTTONE EMERGENZA (Pazzia Extra) --- */
+        .emergency-btn { background-color: #ff1744; color: white; border: 4px solid #b71c1c; border-radius: 15px; padding: 15px 30px; font-size: 1.2rem; font-weight: bold; cursor: pointer; box-shadow: 0 10px 0 #b71c1c, 0 15px 20px rgba(0,0,0,0.3); transition: all 0.1s; margin-top: 40px; }
+        .emergency-btn:active { transform: translateY(10px); box-shadow: 0 0 0 #b71c1c, 0 5px 10px rgba(0,0,0,0.3); }
+        .mega-heart { position: fixed; font-size: 5rem; z-index: 9999; animation: floatFast 3s ease-in forwards; opacity: 0; pointer-events: none; }
+        @keyframes floatFast { 0% { transform: translateY(100vh) scale(0.5); opacity: 1; } 100% { transform: translateY(-100vh) scale(1.5); opacity: 0; } }
+
+        /* --- Modale e Coriandoli --- */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(74, 20, 140, 0.9); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+        .modal-content { background: var(--white); padding: 40px; border-radius: 20px; max-width: 80%; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; z-index: 2001;}
+        @keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        .confetti { position: fixed; width: 10px; height: 10px; z-index: 1999; animation: fall linear forwards; }
+        @keyframes fall { to { transform: translateY(100vh) rotate(720deg); } }
+
+        footer { padding: 40px; font-size: 0.9rem; opacity: 0.7; }
+        @media (max-width: 600px) { h1 { font-size: 2rem; } .polaroid { width: 90%; } .envelope { transform: scale(0.8); } }
+    </style>
+</head>
+<body>
+
+    <div class="floating-bg" id="floating-bg"></div>
+
+    <header>
+        <h1>Buon 8° Complimese, Viola! 💜</h1>
+        <h2>Il mio viaggio preferito sei tu.</h2>
+    </header>
+
+    <div class="counter-container">
+        <div class="time-box"><span id="days">0</span><p>Giorni</p></div>
+        <div class="time-box"><span id="hours">0</span><p>Ore</p></div>
+        <div class="time-box"><span id="minutes">0</span><p>Minuti</p></div>
+        <div class="time-box"><span id="seconds">0</span><p>Secondi</p></div>
+    </div>
+
+    <!-- 1. AMORE-METRO (Staccato) -->
+    <div class="box-section cream">
+        <h3 class="section-title" style="margin-top:0;">L'Amore-Metro 🌡️</h3>
+        <p>Vediamo a che livello è la nostra compatibilità oggi...</p>
+        <div class="meter-bar"><div class="meter-fill" id="meter-fill"></div></div>
+        <p class="meter-text" id="meter-text">0%</p>
+        <button class="btn" id="meter-btn">Calcola!</button>
+    </div>
+
+    <!-- 2. GENERATORE (Staccato) -->
+    <div class="box-section">
+        <h3 class="section-title" style="margin-top:0;">Perché ti amo ✨</h3>
+        <button class="btn" id="smile-btn">Dimmi un motivo</button>
+        <div id="smile-result">"Premi il bottone, ho tantissime cose da dirti..."</div>
+    </div>
+
+    <!-- 3. GALLERIA -->
+    <h3 class="section-title">I Nostri Ricordi 📸</h3>
+    <div class="gallery">
+        <div class="polaroid">
+            <div class="photo-placeholder" style="background-image: url('https://i.postimg.cc/D0N845zX/IMG-20260217-WA0024.jpg');"></div>
+            <p>Ogni tuo sorriso è un raggio di sole. ☀️</p>
+        </div>
+        <div class="polaroid">
+            <div class="photo-placeholder" style="background-image: url('https://i.postimg.cc/KY9kyZy9/IMG-20260102-WA0022.jpg');"></div>
+            <p>I momenti più belli sono quelli semplici con te. ✨</p>
+        </div>
+        <div class="polaroid">
+            <div class="photo-placeholder" style="background-image: url('https://iili.io/BQ1TySj.jpg');"></div>
+            <p>Per altri mille mesi così. Ti amo. 💜</p>
+        </div>
+    </div>
+
+    <!-- 4. LA PLAYLIST (COEZ E GEMELLO) -->
+    <div class="box-section playlist-sec">
+        <h3 class="section-title" style="margin-top:0;">La nostra canzone 🎧</h3>
+        <div class="record-player" id="record">
+            <div class="record-center"><div class="record-hole"></div></div>
+        </div>
+        <div class="song-info">Taciturnal</div>
+        <div class="song-artist">Coez & Gemello</div>
+        <button class="btn" id="play-btn">▶️ Suona / Pausa</button>
+    </div>
+
+    <!-- 5. I COUPON (AGGIUNTI NUOVI) -->
+    <h3 class="section-title">I tuoi Coupon Esclusivi 🎟️</h3>
+    <p style="margin-bottom: 20px;">Validi a vita. Usali con saggezza (o quando faccio arrabbiare)!</p>
+    <div class="coupons-sec">
+        <div class="coupon" onclick="redeemCoupon(this)"><h4>🍣 Cena Sushi</h4><p>Offro io, mangi quanto vuoi senza sensi di colpa.</p></div>
+        <div class="coupon" onclick="redeemCoupon(this)"><h4>💆‍♀️ Massaggio</h4><p>Un massaggio di 30 minuti dopo una giornata pesante.</p></div>
+        <div class="coupon" onclick="redeemCoupon(this)"><h4>🏆 Hai Ragione Tu</h4><p>Vinci automaticamente una nostra discussione.</p></div>
+        <div class="coupon" onclick="redeemCoupon(this)"><h4>📺 Scelta Film</h4><p>Scegli il film stasera (giuro di non addormentarmi).</p></div>
+        <div class="coupon" onclick="redeemCoupon(this)"><h4>☕ Colazione a letto</h4><p>Una mattina a tua scelta, sarò il tuo cameriere personale.</p></div>
+        <div class="coupon" onclick="redeemCoupon(this)"><h4>🚗 Uscita a Sorpresa</h4><p>Organizzo tutto io, tu devi solo farti bella e salire in macchina.</p></div>
+        <div class="coupon" onclick="redeemCoupon(this)"><h4>💋 Bacio Istantaneo</h4><p>Valido per un bacio lunghissimo, ovunque e in qualsiasi momento.</p></div>
+    </div>
+
+    <!-- 6. IL QUIZ DI COPPIA (DINAMICO E CHIARO) -->
+    <div class="box-section cream">
+        <h3 class="section-title" style="margin-top:0;">Il Quiz della Verità 🧠</h3>
+        <div class="quiz-question" id="quiz-q">Caricamento domanda...</div>
+        <div class="quiz-buttons" id="quiz-buttons-container">
+            <!-- I BOTTONI ORA SONO CHIARISSIMI -->
+            <button class="quiz-btn" onclick="checkQuiz('viola')">Tu (Viola)</button>
+            <button class="quiz-btn" onclick="checkQuiz('io')">Io (Il tuo ragazzo)</button>
+        </div>
+        <div class="quiz-feedback" id="quiz-fb"></div>
+        <button id="next-quiz-btn" onclick="nextQuestion()">Prossima Domanda ➡️</button>
+    </div>
+
+    <!-- 7. LA LETTERA -->
+    <h3 class="section-title">Una lettera per te ✉️</h3>
+    <div class="letter-sec" id="envelope-container">
+        <div class="envelope" id="envelope">
+            <div class="envelope-flap"></div>
+            <div class="envelope-body"></div>
+            <div class="letter">
+                <strong>Alla mia stupenda Viola,</strong><br><br>
+                Oggi facciamo 8 mesi. Otto mesi di meraviglia assoluta.<br><br>
+                Forse te lo dico spesso, o forse non abbastanza, ma tu mi rendi una persona migliore. Adoro il tuo modo di fare, i tuoi difetti e la tua dolcezza infinita.<br><br>
+                Questa piccola pagina l'ho scritta solo per ricordarti che per me sei la cosa più preziosa. Ti amo da impazzire.<br><br>
+                <em>Tuo per sempre.</em>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. LA GABBIA DEL BOTTONE FUGGITIVO (FIXATA) -->
+    <div class="runaway-cage" id="runaway-cage">
+        <h3>Dopo tutto questo... mi ami? 🥺</h3>
+        <!-- Wrapper per tenerli affiancati e puliti all'inizio -->
+        <div class="buttons-wrapper" id="buttons-wrapper">
+            <button class="btn btn-yes" id="btn-yes">Ovviamente Sì!</button>
+            <button class="btn btn-no" id="btn-no">Nah</button> 
+        </div>
+    </div>
+
+    <!-- 9. LA PAZZIA EXTRA: IL BOTTONE D'EMERGENZA -->
+    <button class="emergency-btn" id="emergency-btn">🚨 BOTTONE D'EMERGENZA 🚨<br><span style="font-size:0.8rem; font-weight:normal;">Premi solo in caso di mancanza acuta di coccole</span></button>
+
+    <!-- MODALE FINALE -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <h2>SIIIII! 🎉💜</h2>
+            <p>Eri già mia dal giorno zero, ma fa sempre piacere la conferma!</p>
+            <br>
+            <button class="btn" onclick="document.getElementById('success-modal').style.display='none'">Chiudi e vieni a baciarmi 💋</button>
+        </div>
+    </div>
+
+    <footer>Fatto con ❤️, infinito codice e pazzia d'amore per Viola.</footer>
+
+    <script>
+        /* SFONDO ANIMATO */
+        const bgContainer = document.getElementById('floating-bg');
+        const symbols = ['💜', '🌸', '✨', '🤍', '☁️', '🥰'];
+        for(let i = 0; i < 25; i++) {
+            let el = document.createElement('div');
+            el.classList.add('float-item');
+            el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.animationDuration = (Math.random() * 5 + 7) + 's';
+            el.style.animationDelay = Math.random() * 5 + 's';
+            bgContainer.appendChild(el);
+        }
+
+        /* CONTATORE (Data 4 Settembre 2025) */
+        const startDate = new Date(2025, 8, 4, 0, 0, 0); 
+        setInterval(() => {
+            const diff = new Date() - startDate;
+            document.getElementById('days').innerText = Math.floor(diff / 86400000);
+            document.getElementById('hours').innerText = Math.floor((diff / 3600000) % 24);
+            document.getElementById('minutes').innerText = Math.floor((diff / 60000) % 60);
+            document.getElementById('seconds').innerText = Math.floor((diff / 1000) % 60);
+        }, 1000);
+
+        /* AMORE-METRO */
+        const meterBtn = document.getElementById('meter-btn');
+        meterBtn.addEventListener('click', () => {
+            meterBtn.disabled = true;
+            document.getElementById('meter-fill').style.width = '100%';
+            document.getElementById('meter-text').innerText = 'Calcolo in corso... 100%';
+            setTimeout(() => {
+                document.getElementById('meter-text').classList.add('shake');
+                document.getElementById('meter-text').innerText = 'ERRORE: LIVELLO ECCESSIVO!';
+                document.getElementById('meter-fill').style.background = 'linear-gradient(90deg, #ff4081, #d50000)';
+            }, 2000);
+            setTimeout(() => { document.getElementById('meter-text').innerText = '9999% - TI AMO DA IMPAZZIRE! 💥'; }, 4000);
+        });
+
+        /* GENERATORE FRASI */
+        const reasons = [
+            "Perché il tuo sorriso mi salva le giornate.", "Perché quando ridi fai quel verso buffissimo.",
+            "Perché hai sopportato me per 8 mesi (sei un'eroina).", "Perché i tuoi abbracci sanno di casa.",
+            "Perché mi capisci anche quando io non mi capisco.", "Perché sei bellissima in pigiama la domenica mattina.",
+            "Perché credi in me.", "Perché sei testarda come poche, ma hai il cuore d'oro.", "Per la luce nei tuoi occhi.",
+            "Perché sei la mia migliore amica.", "Perché mi rubi il cibo dal piatto.", "Perché ti amo da morire."
+        ];
+        document.getElementById('smile-btn').addEventListener('click', () => {
+            const res = document.getElementById('smile-result');
+            res.style.opacity = 0;
+            setTimeout(() => { res.innerText = `"${reasons[Math.floor(Math.random() * reasons.length)]}"`; res.style.opacity = 1; }, 200);
+        });
+
+        /* GIRADISCHI */
+        document.getElementById('play-btn').addEventListener('click', () => {
+            document.getElementById('record').classList.toggle('spin');
+        });
+
+        /* COUPON */
+        function redeemCoupon(el) { el.classList.add('redeemed'); }
+
+        /* QUIZ DINAMICO */
+        const quizData = [
+            { q: "Chi ha dato il primo bacio?", ans: "viola", yes: "Esatto! Hai preso l'iniziativa tu, e meno male! 🥰", no: "Ehi, non rubarmi il merito... l'hai dato tu per prima! 😜" },
+            { q: "Chi ha scritto per primo all'altro?", ans: "viola", yes: "Proprio tu! E benedico quel momento. 📱", no: "Sbagliato! Sei stata tu a fare il primo passo. 😎" },
+            { q: "Chi continuava a provarci spudoratamente?", ans: "io", yes: "Eh già, io non mollavo il colpo! 💪", no: "Ahahah magari! Ero io a farti la corte spietata. 😅" },
+            { q: "E chi continuava ad essere rifiutato all'inizio?", ans: "io", yes: "Sempre io... ma la costanza ripaga! 🥲💜", no: "No no, tu facevi la preziosa! Ero io lo sfigato rifiutato! 💔😂" },
+            { q: "Chi è il più testardo tra noi due?", ans: "viola", yes: "AHAHAH esatto! Meno male che lo ammetti! 😂", no: "Non fare finta di niente, sai benissimo che sei tu la testarda! 😌" },
+            { q: "Chi ruba le coperte di notte o ha sempre freddo?", ans: "viola", yes: "Ghiacciolo certificato! 🧊🛌", no: "Ma quando mai! Tu sei un termosifone al contrario! 🥶" }
+        ];
+        let currentQuestionIndex = 0;
+        
+        function loadQuestion() {
+            document.getElementById('quiz-q').innerText = quizData[currentQuestionIndex].q;
+            document.getElementById('quiz-fb').innerText = "";
+            document.getElementById('next-quiz-btn').style.display = "none";
+            document.getElementById('quiz-buttons-container').style.display = "flex";
+        }
+
+        function checkQuiz(answer) {
+            const fb = document.getElementById('quiz-fb');
+            const current = quizData[currentQuestionIndex];
+            
+            if(answer === current.ans) {
+                fb.innerText = current.yes;
+                fb.style.color = "#4CAF50";
+                document.getElementById('quiz-buttons-container').style.display = "none";
+                
+                // Se ci sono altre domande
+                if(currentQuestionIndex < quizData.length - 1) {
+                    document.getElementById('next-quiz-btn').style.display = "inline-block";
+                } else {
+                    document.getElementById('next-quiz-btn').style.display = "none";
+                    setTimeout(() => { fb.innerText = "Hai finito il quiz! Bravissima amore mio! 🎉💜"; }, 2000);
+                }
+            } else {
+                fb.innerText = current.no;
+                fb.style.color = "#F44336";
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+        
+        // Carica la prima domanda all'avvio
+        loadQuestion();
+
+        /* LETTERA */
+        document.getElementById('envelope').addEventListener('click', function() { this.classList.toggle('open'); });
+
+        /* BOTTONE FUGGITIVO (FIXATO) */
+        const btnNo = document.getElementById('btn-no');
+        const cage = document.getElementById('runaway-cage');
+        let isAbsolute = false;
+
+        function moveNo() {
+            // Solo al primo passaggio il bottone diventa absolute, staccandosi in modo fluido dal SI'
+            if (!isAbsolute) {
+                btnNo.style.position = 'absolute';
+                isAbsolute = true;
+            }
+            
+            // Calcola limiti gabbia
+            const maxX = cage.clientWidth - btnNo.offsetWidth - 20; 
+            const maxY = cage.clientHeight - btnNo.offsetHeight - 20;
+            
+            const randomX = Math.max(20, Math.random() * maxX);
+            const randomY = Math.max(100, Math.random() * maxY); // 100px per non andare sul testo
+
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+        }
+
+        btnNo.addEventListener('mouseover', moveNo);
+        btnNo.addEventListener('touchstart', (e) => { e.preventDefault(); moveNo(); }, {passive: false});
+
+        /* CORIANDOLI E SUCCESSO */
+        document.getElementById('btn-yes').addEventListener('click', () => {
+            document.getElementById('success-modal').style.display = 'flex';
+            const colors = ['#CE93D8', '#E1BEE7', '#4A148C', '#FFFFFF', '#ff4081'];
+            for(let i=0; i<80; i++) {
+                let conf = document.createElement('div');
+                conf.classList.add('confetti');
+                conf.style.left = Math.random() * 100 + 'vw';
+                conf.style.top = -10 + 'px';
+                conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                conf.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                conf.style.animationDelay = Math.random() * 1 + 's';
+                document.body.appendChild(conf);
+            }
+        });
+
+        /* PAZZIA EXTRA: BOTTONE EMERGENZA */
+        document.getElementById('emergency-btn').addEventListener('click', () => {
+            for(let i=0; i<30; i++) {
+                setTimeout(() => {
+                    let heart = document.createElement('div');
+                    heart.innerHTML = '💜';
+                    heart.classList.add('mega-heart');
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    // Varia la grandezza
+                    heart.style.fontSize = (Math.random() * 4 + 2) + 'rem';
+                    document.body.appendChild(heart);
+                    
+                    // Rimuovi dopo l'animazione
+                    setTimeout(() => { heart.remove(); }, 3000);
+                }, i * 100); // Ne spara uno ogni 100ms
+            }
+        });
+    </script>
+</body>
 </html>
