@@ -1,463 +1,724 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Per la mia Viola 💜</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Sinfonia di Noi - 9 Mesi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'twinkle': 'twinkle 3s ease-in-out infinite',
+                        'heartbeat': 'heartbeat 1.5s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        twinkle: {
+                            '0%, 100%': { opacity: 0.2 },
+                            '50%': { opacity: 1, transform: 'scale(1.2)' },
+                        },
+                        heartbeat: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '14%': { transform: 'scale(1.2)' },
+                            '28%': { transform: 'scale(1)' },
+                            '42%': { transform: 'scale(1.2)' },
+                            '70%': { transform: 'scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* =========================================
-           VARIABILI E RESET
-           ========================================= */
-        :root {
-            --cream: #FFF8F0;
-            --lavender: #F3E5F5;
-            --lilac: #E1BEE7;
-            --wisteria: #CE93D8;
-            --dark-purple: #4A148C;
-            --btn-hover: #7B1FA2;
-            --white: #FFFFFF;
-            --pink-glow: #ff4081;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Quicksand', sans-serif; }
-
         body {
-            background-color: var(--lavender);
-            color: var(--dark-purple);
+            background: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+            color: #f8fafc;
             overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
         }
-
-        /* --- Sfondo Animato --- */
-        .floating-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; overflow: hidden; }
-        .float-item { position: absolute; bottom: -50px; animation: floatUp linear infinite; opacity: 0.5; }
-        @keyframes floatUp {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.7; }
-            90% { opacity: 0.7; }
-            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-        }
-
-        /* --- Testi e Titoli --- */
-        header { margin-top: 40px; margin-bottom: 40px; }
-        h1 { font-size: 2.8rem; animation: pulse 2s infinite alternate; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
-        @keyframes pulse { 0% { transform: scale(1); } 100% { transform: scale(1.05); } }
-        h2 { font-size: 1.2rem; font-weight: 600; color: var(--btn-hover); margin-top: 10px; }
-        .section-title { font-size: 2rem; margin: 50px 0 30px 0; border-bottom: 3px dashed var(--lilac); display: inline-block; padding-bottom: 5px; }
-
-        /* --- Contatore --- */
-        .counter-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; }
-        .time-box { background: var(--white); border-radius: 15px; padding: 15px 20px; box-shadow: 0 8px 20px rgba(206, 147, 216, 0.4); min-width: 80px; border: 2px solid var(--lilac); }
-        .time-box span { font-size: 2rem; font-weight: 700; color: var(--btn-hover); }
-        .time-box p { font-size: 0.8rem; text-transform: uppercase; margin-top: 5px; }
-
-        /* --- Bottoni Base --- */
-        .btn {
-            background-color: var(--wisteria); color: var(--dark-purple); border: none; padding: 15px 30px;
-            font-size: 1.1rem; font-weight: 700; border-radius: 50px; cursor: pointer; transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(206, 147, 216, 0.5); margin: 10px;
-        }
-        .btn:hover { background-color: var(--btn-hover); color: var(--white); transform: translateY(-3px); }
-
-        /* --- Box Layout (Staccati meglio) --- */
-        .box-section { background: var(--white); padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(206,147,216,0.3); max-width: 600px; width: 100%; margin-bottom: 50px; }
-        .box-section.cream { background: var(--cream); }
+        .serif-font { font-family: 'Playfair Display', serif; }
         
-        /* Amore-Metro */
-        .meter-bar { width: 100%; height: 30px; background: #ddd; border-radius: 15px; overflow: hidden; margin: 20px 0; position: relative; }
-        .meter-fill { width: 0%; height: 100%; background: linear-gradient(90deg, var(--lilac), var(--dark-purple)); transition: width 2s cubic-bezier(0.4, 0, 0.2, 1); }
-        .meter-text { font-size: 1.5rem; font-weight: bold; color: var(--dark-purple); transition: all 0.5s ease; }
-        .shake { animation: crazyShake 0.5s infinite; color: var(--pink-glow) !important; text-shadow: 0 0 10px var(--pink-glow); }
-        @keyframes crazyShake { 0% { transform: translate(2px, 1px); } 20% { transform: translate(-3px, 0px); } 40% { transform: translate(1px, -1px); } 60% { transform: translate(-3px, 1px); } 80% { transform: translate(-1px, -1px); } 100% { transform: translate(1px, -2px); } }
-
-        /* Generatore */
-        #smile-result { margin-top: 20px; font-size: 1.3rem; font-weight: 600; color: var(--btn-hover); min-height: 80px; display: flex; align-items: center; justify-content: center; font-style: italic; padding: 0 10px; }
-
-        /* --- Galleria Polaroid --- */
-        .gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; max-width: 1000px; margin-bottom: 50px; }
-        .polaroid { background: var(--white); padding: 15px 15px 30px 15px; border-radius: 5px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); width: 280px; transition: transform 0.3s ease; }
-        .polaroid:nth-child(1) { transform: rotate(-3deg); }
-        .polaroid:nth-child(2) { transform: rotate(2deg); }
-        .polaroid:nth-child(3) { transform: rotate(-1deg); }
-        .polaroid:hover { transform: scale(1.05) rotate(0deg); z-index: 10; }
-        .photo-placeholder { width: 100%; height: 250px; background-color: var(--lilac); border-radius: 3px; margin-bottom: 15px; background-size: cover; background-position: center; background-repeat: no-repeat; }
-
-        /* --- La Playlist (Giradischi) --- */
-        .playlist-sec { display: flex; flex-direction: column; align-items: center; }
-        .record-player { width: 150px; height: 150px; background: #222; border-radius: 50%; border: 5px solid #111; display: flex; justify-content: center; align-items: center; position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.3); margin-bottom: 20px; }
-        .record-center { width: 50px; height: 50px; background: var(--wisteria); border-radius: 50%; border: 2px solid var(--white); display: flex; justify-content: center; align-items: center; }
-        .record-hole { width: 10px; height: 10px; background: var(--white); border-radius: 50%; }
-        .spin { animation: spinRecord 3s linear infinite; }
-        @keyframes spinRecord { 100% { transform: rotate(360deg); } }
-        .song-info { font-weight: bold; font-size: 1.3rem; margin-bottom: 5px; color: var(--dark-purple); }
-        .song-artist { font-size: 1rem; opacity: 0.8; margin-bottom: 15px; font-style: italic; }
-
-        /* --- I Coupon dell'Amore --- */
-        .coupons-sec { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 900px; margin-bottom: 50px; }
-        .coupon { background: linear-gradient(135deg, var(--white), var(--lavender)); border: 2px dashed var(--wisteria); border-radius: 10px; width: 220px; padding: 20px; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .coupon:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(206,147,216,0.4); }
-        .coupon.redeemed { background: #eee; border-color: #ccc; color: #999; transform: none; cursor: not-allowed; }
-        .coupon.redeemed::after { content: "RISCATTATO"; position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%) rotate(-20deg); font-size: 1.8rem; font-weight: bold; color: rgba(255,0,0,0.3); border: 3px solid rgba(255,0,0,0.3); padding: 5px 10px; border-radius: 5px; }
-
-        /* --- Il Quiz di Coppia --- */
-        .quiz-question { font-size: 1.3rem; font-weight: bold; margin-bottom: 20px; color: var(--dark-purple); }
-        .quiz-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
-        .quiz-btn { background-color: var(--wisteria); color: var(--dark-purple); font-weight: bold; padding: 12px 20px; border: none; border-radius: 30px; cursor: pointer; transition: 0.3s; }
-        .quiz-btn:hover { background-color: var(--btn-hover); color: white; }
-        .quiz-feedback { margin-top: 15px; font-weight: bold; font-size: 1.1rem; min-height: 30px; }
-        #next-quiz-btn { display: none; background-color: #4CAF50; color: white; margin-top: 15px; padding: 10px 20px; border-radius: 20px; border: none; font-weight: bold; cursor: pointer; }
-
-        /* --- La Lettera Segreta --- */
-        .letter-sec { margin: 40px 0; cursor: pointer; }
-        .envelope { width: 300px; height: 200px; background: var(--wisteria); position: relative; margin: 0 auto; border-radius: 0 0 10px 10px; box-shadow: 0 15px 30px rgba(0,0,0,0.2); transition: transform 0.3s; }
-        .envelope:hover { transform: translateY(-5px); }
-        .envelope-flap { position: absolute; top: 0; left: 0; border-left: 150px solid transparent; border-right: 150px solid transparent; border-top: 100px solid var(--btn-hover); z-index: 3; transform-origin: top; transition: transform 0.5s ease; }
-        .envelope-body { position: absolute; bottom: 0; width: 100%; height: 100%; border-left: 150px solid var(--lilac); border-right: 150px solid var(--lilac); border-bottom: 100px solid var(--wisteria); z-index: 2; border-radius: 0 0 10px 10px; }
-        .letter { position: absolute; bottom: 10px; left: 5%; width: 90%; background: var(--white); padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 1; transition: transform 0.8s ease; font-size: 0.9rem; text-align: left; overflow: hidden; height: 180px; border-radius: 5px; }
-        .envelope.open .envelope-flap { transform: rotateX(180deg); z-index: 0; }
-        .envelope.open .letter { transform: translateY(-150px); z-index: 4; height: auto; padding-bottom: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-
-        /* --- IL BOTTONE FUGGITIVO (LA GABBIA MAGICA FIXATA) --- */
-        .runaway-cage {
-            position: relative;
-            background: var(--cream);
-            border-radius: 20px;
-            width: 100%;
-            max-width: 600px;
-            height: 350px; 
-            margin-top: 50px;
-            box-shadow: 0 10px 25px rgba(206, 147, 216, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding-top: 30px;
-            overflow: hidden; 
+        .glass-3d {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(244, 63, 94, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
         }
-        .buttons-wrapper { display: flex; gap: 20px; position: relative; height: 60px; margin-top: 20px; width: 100%; justify-content: center; }
-        .btn-yes { background-color: #4CAF50; color: white; z-index: 2; }
-        .btn-no { background-color: #F44336; color: white; position: relative; z-index: 10; transition: left 0.3s ease, top 0.3s ease; }
+        .glass-3d:hover {
+            transform: translateY(-8px);
+            border-color: rgba(244, 63, 94, 0.5);
+            box-shadow: 0 35px 60px rgba(244, 63, 94, 0.2);
+        }
 
-        /* --- BOTTONE EMERGENZA (Pazzia Extra) --- */
-        .emergency-btn { background-color: #ff1744; color: white; border: 4px solid #b71c1c; border-radius: 15px; padding: 15px 30px; font-size: 1.2rem; font-weight: bold; cursor: pointer; box-shadow: 0 10px 0 #b71c1c, 0 15px 20px rgba(0,0,0,0.3); transition: all 0.1s; margin-top: 40px; }
-        .emergency-btn:active { transform: translateY(10px); box-shadow: 0 0 0 #b71c1c, 0 5px 10px rgba(0,0,0,0.3); }
-        .mega-heart { position: fixed; font-size: 5rem; z-index: 9999; animation: floatFast 3s ease-in forwards; opacity: 0; pointer-events: none; }
-        @keyframes floatFast { 0% { transform: translateY(100vh) scale(0.5); opacity: 1; } 100% { transform: translateY(-100vh) scale(1.5); opacity: 0; } }
+        .polaroid-frame {
+            background: #fff;
+            padding: 10px 10px 42px 10px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 4px;
+        }
+        .polaroid-frame:hover { transform: scale(1.08) rotate(0deg) !important; z-index: 10; }
 
-        /* --- Modale e Coriandoli --- */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(74, 20, 140, 0.9); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .modal-content { background: var(--white); padding: 40px; border-radius: 20px; max-width: 80%; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; z-index: 2001;}
-        @keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-        .confetti { position: fixed; width: 10px; height: 10px; z-index: 1999; animation: fall linear forwards; }
-        @keyframes fall { to { transform: translateY(100vh) rotate(720deg); } }
+        .cloud-layer { will-change: transform; transition: transform 0.1s linear; }
 
-        footer { padding: 40px; font-size: 0.9rem; opacity: 0.7; }
-        @media (max-width: 600px) { h1 { font-size: 2rem; } .polaroid { width: 90%; } .envelope { transform: scale(0.8); } }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @keyframes heartBurst {
+            0% { transform: scale(0.1) rotate(0deg); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(var(--rot)); opacity: 0; }
+        }
+        .heart-particle {
+            position: fixed; pointer-events: none; z-index: 99999; font-size: 2rem;
+            animation: heartBurst 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .slot-reel { height: 60px; overflow: hidden; position: relative; background: #020617; border-radius: 8px; border: 1px solid #334155; }
+        .slot-icons { display: flex; flex-direction: column; transition: transform 2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .slot-icon { height: 60px; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #e11d48; border-radius: 4px; }
     </style>
 </head>
-<body>
+<body class="relative antialiased selection:bg-rose-500 selection:text-white">
 
-    <div class="floating-bg" id="floating-bg"></div>
+    <div class="fixed bottom-6 right-6 z-50">
+        <button id="heartBtn" class="bg-gradient-to-tr from-rose-600 to-pink-500 hover:scale-110 active:scale-95 text-white w-16 h-16 rounded-full shadow-[0_0_30px_rgba(225,29,72,0.6)] flex items-center justify-center transition-all border-2 border-white/20 relative overflow-hidden group">
+            <span class="absolute inset-0 bg-white/20 group-hover:animate-ping rounded-full"></span>
+            <i class="fa-solid fa-heart text-2xl relative z-10 animate-heartbeat"></i>
+        </button>
+    </div>
 
-    <header>
-        <h1>Buon 8° Complimese, Viola! 💜</h1>
-        <h2>Il mio viaggio preferito sei tu.</h2>
+    <nav class="fixed top-0 w-full z-40 bg-slate-950/70 backdrop-blur-xl border-b border-white/10 px-6 py-4 flex justify-between items-center transition-all">
+        <div class="text-2xl font-black bg-gradient-to-r from-white via-rose-300 to-rose-500 bg-clip-text text-transparent tracking-tighter cursor-default">
+            V&A <span class="text-sm font-light text-slate-400 font-sans tracking-normal ml-2">4 Giugno</span>
+        </div>
+        <div class="hidden lg:flex space-x-8 text-xs font-bold uppercase tracking-widest text-slate-300">
+            <a href="#storia" class="hover:text-rose-400 transition-colors">Storia</a>
+            <a href="#viaggi" class="hover:text-rose-400 transition-colors">Orizzonti</a>
+            <a href="#galleria" class="hover:text-rose-400 transition-colors">Polaroid</a>
+            <a href="#arcade" class="hover:text-rose-400 transition-colors">Giochi (6)</a>
+        </div>
+        <button onclick="document.getElementById('maturitaModal').classList.remove('hidden')" class="bg-indigo-900/40 hover:bg-indigo-800 text-indigo-300 border border-indigo-500/50 text-[10px] font-bold tracking-widest px-4 py-2 rounded-lg transition-all shadow-lg">
+            <i class="fa-solid fa-code mr-1"></i> LOG UNICA
+        </button>
+    </nav>
+
+    <header class="relative w-full h-screen flex flex-col justify-center items-center text-center overflow-hidden px-4 perspective-[1000px] bg-slate-950">
+        <div id="starContainer" class="absolute inset-0 z-0"></div>
+        
+        <div id="cloudLeft" class="cloud-layer absolute bottom-[-10%] left-[-10%] text-slate-900 z-10 opacity-90"><i class="fa-solid fa-cloud text-[25rem] drop-shadow-[0_0_50px_rgba(255,255,255,0.02)]"></i></div>
+        <div id="cloudRight" class="cloud-layer absolute bottom-[5%] right-[-15%] text-slate-900 z-10 opacity-80"><i class="fa-solid fa-cloud text-[30rem]"></i></div>
+        <div id="cloudTop" class="cloud-layer absolute top-[10%] left-[20%] text-slate-800 z-0 scale-75 opacity-50"><i class="fa-solid fa-cloud text-[18rem]"></i></div>
+        
+        <div class="z-20 max-w-5xl transform translate-z-[50px] relative">
+            <div class="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-5 py-2 rounded-full mb-8 backdrop-blur-md">
+                <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-rose-500"></span></span>
+                <span class="text-xs font-mono tracking-widest text-slate-300 uppercase">Capolavoro // 9 Mesi</span>
+            </div>
+            <h1 class="text-5xl sm:text-7xl md:text-8xl font-black text-white leading-tight drop-shadow-2xl">
+                Oltre il Codice, <br>
+                <span class="serif-font italic font-normal bg-gradient-to-r from-rose-400 via-pink-300 to-rose-400 bg-clip-text text-transparent">il nostro Destino.</span>
+            </h1>
+            <p class="mt-6 text-sm md:text-lg text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
+                Nato tra gli ombrelloni del Campeggio Vittoria, destinato alle strade di New York. Un'esperienza digitale per la commissione d'esame, ma il cui cuore batte esclusivamente per te, Viola.
+            </p>
+        </div>
+
+        <div class="absolute bottom-10 flex flex-col items-center z-30 opacity-70">
+            <span class="text-[9px] font-mono tracking-widest uppercase mb-2 text-rose-300">Scorri e viaggia con me</span>
+            <i class="fa-solid fa-angles-down animate-bounce text-rose-500 text-xl"></i>
+        </div>
     </header>
 
-    <div class="counter-container">
-        <div class="time-box"><span id="days">0</span><p>Giorni</p></div>
-        <div class="time-box"><span id="hours">0</span><p>Ore</p></div>
-        <div class="time-box"><span id="minutes">0</span><p>Minuti</p></div>
-        <div class="time-box"><span id="seconds">0</span><p>Secondi</p></div>
-    </div>
+    <section id="storia" class="py-32 px-6 relative z-20 overflow-hidden">
+        <div class="max-w-5xl mx-auto reveal">
+            <div class="text-center mb-24">
+                <h2 class="text-[10px] font-black tracking-widest text-rose-500 uppercase">La Timeline del Cuore</h2>
+                <p class="text-3xl md:text-5xl font-extrabold mt-3 serif-font italic text-white">I nostri passi nel tempo</p>
+            </div>
 
-    <!-- 1. AMORE-METRO (Staccato) -->
-    <div class="box-section cream">
-        <h3 class="section-title" style="margin-top:0;">L'Amore-Metro 🌡️</h3>
-        <p>Vediamo a che livello è la nostra compatibilità oggi...</p>
-        <div class="meter-bar"><div class="meter-fill" id="meter-fill"></div></div>
-        <p class="meter-text" id="meter-text">0%</p>
-        <button class="btn" id="meter-btn">Calcola!</button>
-    </div>
+            <div class="relative w-full px-4 md:px-0" id="timelineContainer">
+                <div class="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1.5 bg-slate-800 rounded-full"></div>
+                
+                <div id="timelineTrack" class="absolute left-1/2 transform -translate-x-1/2 top-0 w-1.5 bg-gradient-to-b from-rose-500 via-pink-500 to-indigo-500 rounded-full z-10 shadow-[0_0_15px_rgba(244,63,94,0.8)] h-0">
+                    <div id="timelineTrain" class="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2 w-10 h-10 bg-slate-950 border-[3px] border-rose-500 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(244,63,94,1)] text-white text-sm z-20">
+                        <i class="fa-solid fa-train"></i>
+                    </div>
+                </div>
 
-    <!-- 2. GENERATORE (Staccato) -->
-    <div class="box-section">
-        <h3 class="section-title" style="margin-top:0;">Perché ti amo ✨</h3>
-        <button class="btn" id="smile-btn">Dimmi un motivo</button>
-        <div id="smile-result">"Premi il bottone, ho tantissime cose da dirti..."</div>
-    </div>
+                <div class="space-y-32 relative z-20">
+                    <div class="relative flex flex-col md:flex-row items-center w-full reveal">
+                        <div class="w-full md:w-1/2 pr-0 md:pr-20 text-center md:text-right pb-8 md:pb-0">
+                            <span class="text-[11px] font-mono font-bold text-rose-400 bg-rose-500/10 px-3 py-1 rounded-md border border-rose-500/20">01 LUGLIO 2025</span>
+                            <h3 class="text-xl font-bold mt-3 text-white">Il Destino e il Brevetto</h3>
+                            <p class="mt-2 text-slate-400 text-sm leading-relaxed">Se il mio brevetto non fosse scaduto, non sarei mai stato al servizio spiaggia del Campeggio Vittoria. Ti ho vista lavorare come animatrice, e da quel giorno le mie priorità sono cambiate per sempre.</p>
+                        </div>
+                        <div class="hidden md:block w-1/2"></div>
+                    </div>
 
-    <!-- 3. GALLERIA -->
-    <h3 class="section-title">I Nostri Ricordi 📸</h3>
-    <div class="gallery">
-        <div class="polaroid">
-            <div class="photo-placeholder" style="background-image: url('https://i.postimg.cc/D0N845zX/IMG-20260217-WA0024.jpg');"></div>
-            <p>Ogni tuo sorriso è un raggio di sole. ☀️</p>
+                    <div class="relative flex flex-col md:flex-row items-center w-full reveal">
+                        <div class="hidden md:block w-1/2"></div>
+                        <div class="w-full md:w-1/2 pl-0 md:pl-20 text-center md:text-left pb-8 md:pb-0">
+                            <span class="text-[11px] font-mono font-bold text-slate-300 bg-slate-700/50 px-3 py-1 rounded-md border border-slate-600">22 LUGLIO 2025</span>
+                            <h3 class="text-xl font-bold mt-3 text-white">Ritorno a Torino</h3>
+                            <p class="mt-2 text-slate-400 text-sm leading-relaxed">Sei tornata nella tua città. La spiaggia si è svuotata improvvisamente. È stata la prima vera dimostrazione che per me non eri solo una conoscenza passeggera delle vacanze, ma qualcosa di decisamente più profondo.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex flex-col md:flex-row items-center w-full reveal">
+                        <div class="w-full md:w-1/2 pr-0 md:pr-20 text-center md:text-right pb-8 md:pb-0">
+                            <span class="text-[11px] font-mono font-bold text-pink-400 bg-pink-500/10 px-3 py-1 rounded-md border border-pink-500/20">26-27 LUGLIO 2025</span>
+                            <h3 class="text-xl font-bold mt-3 text-white">Il Compleanno e la Svolta</h3>
+                            <p class="mt-2 text-slate-400 text-sm leading-relaxed">La notte del tuo compleanno hai tagliato un filo che non ti meritava più. Da quel momento abbiamo iniziato a scriverci incessantemente, scoprendo un'intesa totale e una sintonia inarrestabile.</p>
+                        </div>
+                        <div class="hidden md:block w-1/2"></div>
+                    </div>
+
+                    <div class="relative flex flex-col md:flex-row items-center w-full reveal">
+                        <div class="hidden md:block w-1/2"></div>
+                        <div class="w-full md:w-1/2 pl-0 md:pl-20 text-center md:text-left pb-8 md:pb-0">
+                            <span class="text-[11px] font-mono font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-md border border-emerald-500/20">22 AGOSTO 2025</span>
+                            <h3 class="text-xl font-bold mt-3 text-white">Il Primo Bacio</h3>
+                            <p class="mt-2 text-slate-400 text-sm leading-relaxed">Sei tornata a Rosolina Mare, teoricamente per le amiche, ma i nostri occhi cercavano solo noi due. Quel primo bacio ha sigillato tutto ciò che già sapevamo, rendendo inutile ogni tentativo di negare l'evidenza.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex flex-col md:flex-row items-center w-full reveal">
+                        <div class="w-full md:w-1/2 pr-0 md:pr-20 text-center md:text-right pb-8 md:pb-0">
+                            <span class="text-[11px] font-mono font-bold text-amber-400 bg-amber-500/10 px-3 py-1 rounded-md border border-amber-500/20">04 SETTEMBRE 2025</span>
+                            <h3 class="text-xl font-bold mt-3 text-white">Sotto il Cielo di Torino</h3>
+                            <p class="mt-2 text-slate-400 text-sm leading-relaxed">Sono venuto da te. Non c'era altra strada. Ti ho chiesto di metterci insieme perché eri diventata l'unica variabile fissa e insostituibile di tutta la mia vita.</p>
+                        </div>
+                        <div class="hidden md:block w-1/2"></div>
+                    </div>
+
+                    <div class="relative flex flex-col md:flex-row items-center w-full reveal">
+                        <div class="hidden md:block w-1/2"></div>
+                        <div class="w-full md:w-1/2 pl-0 md:pl-20 text-center md:text-left pb-8 md:pb-0">
+                            <span class="text-[11px] font-mono font-bold text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-md border border-indigo-500/20">INVERNO 2025/26</span>
+                            <h3 class="text-xl font-bold mt-3 text-white">Costruire Nonostante i Chilometri</h3>
+                            <p class="mt-2 text-slate-400 text-sm leading-relaxed">Treni presi all'alba, weekend programmati al minuto, ore e ore di videochiamate. Abbiamo trasformato la distanza nel nostro punto di forza più grande, dimostrando che amarci è una scelta consapevole che rinnoviamo ogni giorno.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex flex-col md:flex-row items-center w-full reveal">
+                        <div class="w-full md:w-1/2 pr-0 md:pr-20 text-center md:text-right pb-8 md:pb-0">
+                            <span class="text-[11px] font-mono font-bold text-rose-500 bg-rose-500/20 px-3 py-1 rounded-md border border-rose-500">04 GIUGNO 2026</span>
+                            <h3 class="text-2xl font-black mt-3 text-white">Nove Mesi di Noi</h3>
+                            <p class="mt-2 text-slate-300 text-sm leading-relaxed">Oggi. Nove mesi sospesi in un mondo tutto nostro. Tu splendi più di chiunque altra, eclissando il resto, e io non vedo l'ora di vivere ogni singolo orizzonte futuro al tuo fianco.</p>
+                        </div>
+                        <div class="hidden md:block w-1/2"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="polaroid">
-            <div class="photo-placeholder" style="background-image: url('https://i.postimg.cc/KY9kyZy9/IMG-20260102-WA0022.jpg');"></div>
-            <p>I momenti più belli sono quelli semplici con te. ✨</p>
-        </div>
-        <div class="polaroid">
-            <div class="photo-placeholder" style="background-image: url('https://iili.io/BQ1TySj.jpg');"></div>
-            <p>Per altri mille mesi così. Ti amo. 💜</p>
-        </div>
-    </div>
+    </section>
 
-    <!-- 4. LA PLAYLIST (COEZ E GEMELLO) -->
-    <div class="box-section playlist-sec">
-        <h3 class="section-title" style="margin-top:0;">La nostra canzone 🎧</h3>
-        <div class="record-player" id="record">
-            <div class="record-center"><div class="record-hole"></div></div>
+    <section id="viaggi" class="py-32 bg-slate-900 border-y border-white/5 relative z-20">
+        <div class="max-w-6xl mx-auto px-4 text-center reveal">
+            <h2 class="text-[10px] font-black tracking-widest text-indigo-400 uppercase">Geographies</h2>
+            <p class="text-3xl md:text-5xl font-extrabold mt-3 text-white">I Nostri Spostamenti</p>
+
+            <div id="flightZone" class="w-full max-w-4xl mx-auto h-72 bg-slate-950 rounded-[2rem] border border-slate-800 mt-12 relative overflow-hidden flex items-center justify-center shadow-2xl">
+                
+                <div class="absolute left-[10%] bottom-[20%] text-center z-10">
+                    <div class="w-4 h-4 bg-rose-500 rounded-full mx-auto animate-ping opacity-50 absolute inset-0 m-auto"></div>
+                    <div class="w-4 h-4 bg-rose-500 rounded-full mx-auto relative z-10 border-2 border-white"></div>
+                    <p class="text-xs font-mono font-bold text-white mt-2">MILANO</p>
+                </div>
+                
+                <div class="absolute right-[10%] top-[20%] text-center z-10">
+                    <div class="w-4 h-4 bg-indigo-500 rounded-full mx-auto animate-ping opacity-50 absolute inset-0 m-auto"></div>
+                    <div class="w-4 h-4 bg-indigo-500 rounded-full mx-auto relative z-10 border-2 border-white"></div>
+                    <p class="text-xs font-mono font-bold text-white mt-2">NEW YORK</p>
+                </div>
+
+                <svg class="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1000 300">
+                    <path id="flightPath" d="M 100 220 Q 500 20 900 80" fill="transparent" stroke="rgba(244,63,94,0.15)" stroke-width="3" stroke-dasharray="15 15"/>
+                    <path id="flightProgress" d="M 100 220 Q 500 20 900 80" fill="transparent" stroke="url(#gradient)" stroke-width="4" stroke-dasharray="2000" stroke-dashoffset="2000" />
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#f43f5e" />
+                            <stop offset="100%" stop-color="#6366f1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+                <div id="svgPlane" class="absolute left-0 top-0 text-rose-400 z-20 drop-shadow-[0_0_15px_rgba(244,63,94,0.8)]" style="transform: translate(100px, 220px) rotate(0deg);">
+                    <i class="fa-solid fa-plane text-3xl"></i>
+                </div>
+            </div>
+
+            <div class="mt-10 text-slate-300 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+                Abbiamo iniziato camminando per <strong class="text-white">Milano</strong>, godendoci la magia di ogni passo fatto insieme. Dal 9 al 13 Settembre solcheremo l'oceano per festeggiare il nostro primo anno immersi in <strong class="text-white">New York</strong>. E poi? Esploreremo ogni singolo continente, te lo prometto.
+            </div>
         </div>
-        <div class="song-info">Taciturnal</div>
-        <div class="song-artist">Coez & Gemello</div>
-        <button class="btn" id="play-btn">▶️ Suona / Pausa</button>
-    </div>
+    </section>
 
-    <!-- 5. I COUPON (AGGIUNTI NUOVI) -->
-    <h3 class="section-title">I tuoi Coupon Esclusivi 🎟️</h3>
-    <p style="margin-bottom: 20px;">Validi a vita. Usali con saggezza (o quando faccio arrabbiare)!</p>
-    <div class="coupons-sec">
-        <div class="coupon" onclick="redeemCoupon(this)"><h4>🍣 Cena Sushi</h4><p>Offro io, mangi quanto vuoi senza sensi di colpa.</p></div>
-        <div class="coupon" onclick="redeemCoupon(this)"><h4>💆‍♀️ Massaggio</h4><p>Un massaggio di 30 minuti dopo una giornata pesante.</p></div>
-        <div class="coupon" onclick="redeemCoupon(this)"><h4>🏆 Hai Ragione Tu</h4><p>Vinci automaticamente una nostra discussione.</p></div>
-        <div class="coupon" onclick="redeemCoupon(this)"><h4>📺 Scelta Film</h4><p>Scegli il film stasera (giuro di non addormentarmi).</p></div>
-        <div class="coupon" onclick="redeemCoupon(this)"><h4>☕ Colazione a letto</h4><p>Una mattina a tua scelta, sarò il tuo cameriere personale.</p></div>
-        <div class="coupon" onclick="redeemCoupon(this)"><h4>🚗 Uscita a Sorpresa</h4><p>Organizzo tutto io, tu devi solo farti bella e salire in macchina.</p></div>
-        <div class="coupon" onclick="redeemCoupon(this)"><h4>💋 Bacio Istantaneo</h4><p>Valido per un bacio lunghissimo, ovunque e in qualsiasi momento.</p></div>
-    </div>
-
-    <!-- 6. IL QUIZ DI COPPIA (DINAMICO E CHIARO) -->
-    <div class="box-section cream">
-        <h3 class="section-title" style="margin-top:0;">Il Quiz della Verità 🧠</h3>
-        <div class="quiz-question" id="quiz-q">Caricamento domanda...</div>
-        <div class="quiz-buttons" id="quiz-buttons-container">
-            <!-- I BOTTONI ORA SONO CHIARISSIMI -->
-            <button class="quiz-btn" onclick="checkQuiz('viola')">Tu (Viola)</button>
-            <button class="quiz-btn" onclick="checkQuiz('io')">Io (Il tuo ragazzo)</button>
+    <section id="galleria" class="py-32 px-4 relative z-20">
+        <div class="max-w-7xl mx-auto text-center reveal">
+            <h2 class="text-[10px] font-black tracking-widest text-pink-400 uppercase">La Vetrina</h2>
+            <p class="text-3xl md:text-5xl font-extrabold mt-3 serif-font italic text-white mb-16">I Nostri Frammenti</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 perspective-[1200px]">
+                <div class="polaroid-frame" style="transform: rotate(-3deg);"><div class="w-full aspect-[4/5] bg-slate-800 overflow-hidden"><img src="https://i.postimg.cc/ry30nWj3/Whats-App-Image-2026-05-31-at-22-43-51-(4).jpg" alt="Noi" class="w-full h-full object-cover object-center"></div></div>
+                <div class="polaroid-frame" style="transform: rotate(2deg);"><div class="w-full aspect-[4/5] bg-slate-800 overflow-hidden"><img src="https://i.postimg.cc/RVt3jFpk/Whats-App-Image-2026-05-31-at-22-43-49.jpg" alt="Noi" class="w-full h-full object-cover object-center"></div></div>
+                <div class="polaroid-frame" style="transform: rotate(-1deg);"><div class="w-full aspect-[4/5] bg-slate-800 overflow-hidden"><img src="https://i.postimg.cc/zXhL9B2M/Whats-App-Image-2026-05-31-at-22-43-49-(1).jpg" alt="Noi" class="w-full h-full object-cover object-center"></div></div>
+                <div class="polaroid-frame" style="transform: rotate(4deg);"><div class="w-full aspect-[4/5] bg-slate-800 overflow-hidden"><img src="https://i.postimg.cc/jdfWG53k/Whats-App-Image-2026-05-31-at-22-43-50.jpg" alt="Noi" class="w-full h-full object-cover object-center"></div></div>
+                <div class="polaroid-frame" style="transform: rotate(-2deg);"><div class="w-full aspect-[4/5] bg-slate-800 overflow-hidden"><img src="https://i.postimg.cc/c43KVHkz/Whats-App-Image-2026-05-31-at-22-43-50-(1).jpg" alt="Noi" class="w-full h-full object-cover object-center"></div></div>
+                <div class="polaroid-frame" style="transform: rotate(1deg);"><div class="w-full aspect-[4/5] bg-slate-800 overflow-hidden"><img src="https://i.postimg.cc/WbZDQ3YW/Whats-App-Image-2026-05-31-at-22-43-50-(2).jpg" alt="Noi" class="w-full h-full object-cover object-center"></div></div>
+                <div class="polaroid-frame" style="transform: rotate(-4deg);"><div class="w-full aspect-[4/5] bg-slate-800 overflow-hidden"><img src="https://i.postimg.cc/rF4dvmZQ/Whats-App-Image-2026-05-31-at-22-43-50-(3).jpg" alt="Noi" class="w-full h-full object-cover object-center"></div></div>
+                <div class="polaroid-frame" style="transform: rotate(3deg);"><div class="w-full aspect-[4/5] bg-slate-800 overflow-hidden"><img src="https://i.postimg.cc/sDWBtXHT/Whats-App-Image-2026-05-31-at-22-43-51.jpg" alt="Noi" class="w-full h-full object-cover object-center"></div></div>
+                <div class="polaroid-frame" style="transform: rotate(-1deg);"><div class="w-full aspect-[4/5] bg-slate-800 overflow-hidden"><img src="https://i.postimg.cc/T2FL7m0z/Whats-App-Image-2026-05-31-at-22-43-51-(1).jpg" alt="Noi" class="w-full h-full object-cover object-center"></div></div>
+                <div class="polaroid-frame" style="transform: rotate(2deg);"><div class="w-full aspect-[4/5] bg-slate-800 overflow-hidden"><img src="https://i.postimg.cc/gcQXSR49/Whats-App-Image-2026-05-31-at-22-43-51-(2).jpg" alt="Noi" class="w-full h-full object-cover object-center"></div></div>
+                <div class="polaroid-frame" style="transform: rotate(-3deg);"><div class="w-full aspect-[4/5] bg-slate-800 overflow-hidden"><img src="https://i.postimg.cc/Y2ZGngRT/Whats-App-Image-2026-05-31-at-22-43-51-(3).jpg" alt="Noi" class="w-full h-full object-cover object-center"></div></div>
+                <div class="polaroid-frame" style="transform: rotate(4deg);"><div class="w-full aspect-[4/5] bg-slate-800 overflow-hidden"><img src="https://i.postimg.cc/3Ncg9cR4/Whats-App-Image-2026-05-31-at-22-43-51-(5).jpg" alt="Noi" class="w-full h-full object-cover object-center"></div></div>
+            </div>
         </div>
-        <div class="quiz-feedback" id="quiz-fb"></div>
-        <button id="next-quiz-btn" onclick="nextQuestion()">Prossima Domanda ➡️</button>
-    </div>
+    </section>
 
-    <!-- 7. LA LETTERA -->
-    <h3 class="section-title">Una lettera per te ✉️</h3>
-    <div class="letter-sec" id="envelope-container">
-        <div class="envelope" id="envelope">
-            <div class="envelope-flap"></div>
-            <div class="envelope-body"></div>
-            <div class="letter">
-                <strong>Alla mia stupenda Viola,</strong><br><br>
-                Oggi facciamo 8 mesi. Otto mesi di meraviglia assoluta.<br><br>
-                Forse te lo dico spesso, o forse non abbastanza, ma tu mi rendi una persona migliore. Adoro il tuo modo di fare, i tuoi difetti e la tua dolcezza infinita.<br><br>
-                Questa piccola pagina l'ho scritta solo per ricordarti che per me sei la cosa più preziosa. Ti amo da impazzire.<br><br>
-                <em>Tuo per sempre.</em>
+    <section id="arcade" class="py-32 bg-slate-900 border-t border-white/5 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 reveal">
+            <div class="text-center mb-16">
+                <h2 class="text-[10px] font-black tracking-widest text-emerald-400 uppercase">L'Arcade di Viola</h2>
+                <p class="text-3xl md:text-5xl font-extrabold mt-3 text-white mb-2">6 Moduli Interattivi</p>
+                <p class="text-sm text-slate-400">Dinamiche ed interazioni frontend native.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="glass-3d p-6 rounded-3xl relative overflow-hidden flex flex-col justify-center">
+                    <h3 class="text-lg font-bold text-white mb-1">Sensore di Cuore 2.0</h3>
+                    <p class="text-[10px] text-slate-400 mb-6 font-mono">Tieni premuto per scoprire la verità.</p>
+                    
+                    <div id="heartGameBox" class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center relative z-10 flex-grow flex flex-col justify-center transition-all duration-700">
+                        <div id="hbProgress" class="w-full bg-slate-900 h-4 rounded-full overflow-hidden p-1 border border-slate-800 mb-2">
+                            <div id="energyBar" class="h-full bg-gradient-to-r from-pink-600 to-amber-400 rounded-full w-[0%] transition-all duration-100 shadow-[0_0_10px_rgba(244,63,94,0.8)]"></div>
+                        </div>
+                        <p id="energyPhrase" class="text-[11px] font-mono text-pink-400 font-bold mb-4 min-h-[30px]">Caricando i sentimenti...</p>
+                        
+                        <button id="sensorBtn" class="w-20 h-20 bg-slate-900 border border-slate-800 rounded-full mx-auto flex items-center justify-center text-3xl transition-all cursor-pointer select-none">
+                            <i class="fa-solid fa-fingerprint text-slate-500" id="sensorIcon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-3d p-6 rounded-3xl">
+                    <h3 class="text-lg font-bold text-white mb-1">Memory della Relazione</h3>
+                    <p class="text-[10px] text-slate-400 mb-4 font-mono">Accoppia i nostri ricordi iconici.</p>
+                    <div id="memoryBoard" class="grid grid-cols-4 gap-2 bg-slate-950 p-3 rounded-xl border border-slate-800 justify-items-center"></div>
+                </div>
+
+                <div class="glass-3d p-6 rounded-3xl flex flex-col justify-center">
+                    <h3 class="text-lg font-bold text-white mb-1">Lore Quiz</h3>
+                    <p class="text-[10px] text-slate-400 mb-4 font-mono">Verifica la memoria a breve/lungo termine.</p>
+                    <div id="quizApp" class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col justify-between flex-grow">
+                        <div id="qText" class="text-sm font-semibold text-white mb-3">Domanda...</div>
+                        <div id="qOpts" class="space-y-2"></div>
+                        <button id="qNextBtn" class="hidden mt-3 bg-rose-600 text-white text-[10px] uppercase font-bold py-2 rounded">Prossima</button>
+                    </div>
+                </div>
+
+                <div class="glass-3d p-6 rounded-3xl flex flex-col items-center">
+                    <h3 class="text-lg font-bold text-white mb-1 w-full text-left">Love Snake (60FPS)</h3>
+                    <p class="text-[10px] text-slate-400 mb-4 font-mono w-full text-left">Usa la tastiera o il D-Pad gigante qui sotto.</p>
+                    <div class="relative bg-slate-950 border border-slate-800 rounded p-1 w-[250px] h-[250px] flex items-center justify-center">
+                        <canvas id="snakeCanvas" width="240" height="240" class="bg-[#0f172a] rounded"></canvas>
+                        <div id="snakeOverlay" class="absolute inset-0 bg-slate-950/80 flex flex-col items-center justify-center z-10 backdrop-blur-sm">
+                            <button onclick="startSnake()" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded uppercase tracking-wider">PLAY</button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 mt-4 w-36">
+                        <div></div>
+                        <button onclick="changeSnakeDir(0, -1)" class="bg-slate-800 rounded-xl p-3 text-white text-xl active:bg-rose-500 shadow-md"><i class="fa-solid fa-caret-up"></i></button>
+                        <div></div>
+                        <button onclick="changeSnakeDir(-1, 0)" class="bg-slate-800 rounded-xl p-3 text-white text-xl active:bg-rose-500 shadow-md"><i class="fa-solid fa-caret-left"></i></button>
+                        <button onclick="changeSnakeDir(0, 1)" class="bg-slate-800 rounded-xl p-3 text-white text-xl active:bg-rose-500 shadow-md"><i class="fa-solid fa-caret-down"></i></button>
+                        <button onclick="changeSnakeDir(1, 0)" class="bg-slate-800 rounded-xl p-3 text-white text-xl active:bg-rose-500 shadow-md"><i class="fa-solid fa-caret-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="glass-3d p-6 rounded-3xl flex flex-col justify-center">
+                    <h3 class="text-lg font-bold text-white mb-1">Slot dei Ricordi</h3>
+                    <p class="text-[10px] text-slate-400 mb-4 font-mono">Tira la leva per la combinazione vincente.</p>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center flex-grow flex flex-col justify-center">
+                        <div class="flex gap-2 justify-center mb-6">
+                            <div class="w-16 h-16 bg-slate-900 border border-slate-700 rounded-lg flex items-center justify-center text-3xl slot-box" id="slot1">🗽</div>
+                            <div class="w-16 h-16 bg-slate-900 border border-slate-700 rounded-lg flex items-center justify-center text-3xl slot-box" id="slot2">❤️</div>
+                            <div class="w-16 h-16 bg-slate-900 border border-slate-700 rounded-lg flex items-center justify-center text-3xl slot-box" id="slot3">🏖️</div>
+                        </div>
+                        <button onclick="spinSlot()" id="slotBtn" class="bg-gradient-to-r from-amber-500 to-rose-500 text-white font-bold py-2 rounded-lg text-sm shadow-[0_0_15px_rgba(244,63,94,0.4)]">Gira la Slot!</button>
+                        <p id="slotMsg" class="text-[10px] text-pink-400 font-mono mt-3 h-4"></p>
+                    </div>
+                </div>
+
+                <div class="glass-3d p-6 rounded-3xl flex flex-col items-center">
+                    <h3 class="text-lg font-bold text-white mb-1 w-full text-left">Pioggia di Baci</h3>
+                    <p class="text-[10px] text-slate-400 mb-4 font-mono w-full text-left">Sposta il cestino e prendi i baci cadenti!</p>
+                    <div class="relative bg-slate-950 border border-slate-800 rounded p-0 w-full max-w-[250px] aspect-[4/3] flex items-center justify-center overflow-hidden" id="catcherContainer">
+                        <canvas id="catcherCanvas" width="250" height="187" class="bg-[#0f172a]"></canvas>
+                        <div id="catcherOverlay" class="absolute inset-0 bg-slate-950/80 flex flex-col items-center justify-center z-10 backdrop-blur-sm">
+                            <button onclick="startCatcher()" class="bg-pink-600 text-white text-xs font-bold px-4 py-2 rounded">START</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="lettera" class="py-32 px-4 relative z-20 bg-slate-950">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(225,29,72,0.1)_0%,_transparent_70%)] z-0 pointer-events-none"></div>
+        
+        <div class="max-w-3xl mx-auto relative z-20 reveal">
+            <div class="text-center mb-10">
+                <div class="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center text-rose-500 text-2xl shadow-[0_0_30px_rgba(255,255,255,0.2)] mb-4 border border-slate-200">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-black serif-font italic text-white">Lettera al mio Universo</h2>
+            </div>
+
+            <div class="bg-[#fdfbf7] p-8 md:p-14 rounded-sm border border-slate-300 shadow-2xl relative overflow-hidden text-slate-800" style="background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png'); transform: rotate(-0.5deg);">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-rose-500/10 blur-[40px]"></div>
+                
+                <div class="serif-font text-base md:text-xl leading-loose space-y-6">
+                    <p class="font-bold text-rose-700 text-2xl">Amore mio,</p>
+                    <p>
+                        Sei arrivata come uno tsunami in un giorno qualunque d'estate. Da quell'esatto istante, tutte le altre ragazze intorno a me sono diventate invisibili. Ai miei occhi ci sei solo tu, un'eclissi perfetta che ha oscurato il resto del mondo.
+                    </p>
+                    <p>
+                        Tu splendi, Viola. Splendi di una bellezza che non riesco nemmeno a programmare in un algoritmo. Ogni riga di codice di questo sito è pensata per dimostrare ai professori cosa so fare, certo, ma in realtà è solo una gigantesca scusa per dirti, in un modo che resti nel tempo, quanto ti amo.
+                    </p>
+                    <p>
+                        Affronteremo i treni, i chilometri, la distanza tra le nostre città. Perché quando due persone si scelgono come ci stiamo scegliendo noi, non esiste mappa geografica che possa fermarli. Andremo a New York, e poi ci prenderemo tutto il resto del mondo.
+                    </p>
+                    <p class="pt-6 border-t border-slate-300/50 text-right italic font-bold text-rose-600">
+                        Felici 9 Mesi. <br>
+                        <span class="text-sm font-sans font-black tracking-widest uppercase text-slate-500 mt-2 block">Il tuo Adam</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black py-8 border-t border-slate-900 text-center text-slate-600 text-[10px] font-mono relative z-20">
+        <p>Progetto Architettura Web - Esame di Stato - Portale Unica</p>
+        <p class="mt-2 text-rose-900">Adam & Viola // 04.06.2026</p>
+    </footer>
+
+    <div id="maturitaModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-indigo-500/40 p-8 rounded-3xl max-w-4xl w-full max-h-[85vh] overflow-y-auto shadow-2xl relative text-left">
+            <button onclick="document.getElementById('maturitaModal').classList.add('hidden')" class="absolute top-6 right-6 text-slate-400 hover:text-white text-2xl"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="text-2xl font-black text-white mb-6 border-b border-white/10 pb-4"><i class="fa-solid fa-graduation-cap text-indigo-400 mr-2"></i> Presentazione del Capolavoro d'Esame</h2>
+            
+            <div class="space-y-6 text-sm text-slate-300 font-sans leading-relaxed">
+                <p>
+                    Questo sito web a pagina unica rappresenta il mio **Capolavoro** per la maturità, caricato sul portale ministeriale **Unica**. L'obiettivo del progetto è dimostrare come sia possibile unire la teoria studiata a scuola con la creatività pratica, dando vita a un'applicazione interattiva e funzionante.
+                </p>
+                
+                <div>
+                    <h4 class="font-bold text-indigo-400 mb-1 uppercase tracking-wide text-xs">1. Le mie conoscenze di base (Informatica a Scuola)</h4>
+                    <p class="text-slate-400 text-xs md:text-sm">
+                        Per costruire l'intera struttura ho sfruttato le competenze apprese durante il percorso del **Liceo Scientifico - Opzione Scienze Applicate**. Ho utilizzato i linguaggi fondamentali del web: **HTML** per organizzare i testi, i menu e le varie sezioni, i fogli di stile per definire la grafica e i colori, e soprattutto la logica di programmazione in **JavaScript**. Attraverso JavaScript ho gestito i meccanismi logici dei minigiochi (come il calcolo del punteggio del quiz o il controllo delle caselle uguali nel memory) e lo spostamento fluido degli elementi grafici.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-indigo-400 mb-1 uppercase tracking-wide text-xs">2. Il mio approccio con l'Intelligenza Artificiale (Gemini)</h4>
+                    <p class="text-slate-400 text-xs md:text-sm">
+                        Per spingere il progetto a un livello superiore, ho scelto di collaborare attivamente con l'Intelligenza Artificiale (**Gemini**). Questo non significa che il lavoro sia stato fatto passivamente dall'IA; al contrario, ho dovuto mettere in campo una forte competenza logica nel guidarla:
+                    </p>
+                    <ul class="list-disc pl-5 space-y-1 text-slate-400 text-xs md:text-sm mt-2">
+                        <li><strong>Progettazione dei Prompts (Prompt Engineering):</strong> Ho scritto e strutturato istruzioni logiche e dettagliate per spiegare all'IA esattamente quali funzioni programmare, come calcolare le traiettorie e come impostare l'interattività.</li>
+                        <li><strong>Controllo e Correzione Manuale:</strong> Ho analizzato il codice generato, testando i giochi e correggendo a mano i difetti visivi, modificando i parametri matematici dello scorrimento delle pagine per fare in modo che il trenino e l'aereo si muovessero in modo fluido senza uscire dallo schermo.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-indigo-400 mb-1 uppercase tracking-wide text-xs">3. Logica dei Minigiochi</h4>
+                    <p class="text-slate-400 text-xs md:text-sm">
+                        I moduli dell'area giochi applicano concetti informatici precisi: gestione delle matrici bidimensionali per muovere il serpente nel gioco dello *Snake*, algoritmi di mescolamento casuale per il *Memory*, e calcoli fisici di collisione tra coordinate per muovere il cestino e intercettare gli oggetti cadenti nel gioco della *Pioggia di Baci*.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- 8. LA GABBIA DEL BOTTONE FUGGITIVO (FIXATA) -->
-    <div class="runaway-cage" id="runaway-cage">
-        <h3>Dopo tutto questo... mi ami? 🥺</h3>
-        <!-- Wrapper per tenerli affiancati e puliti all'inizio -->
-        <div class="buttons-wrapper" id="buttons-wrapper">
-            <button class="btn btn-yes" id="btn-yes">Ovviamente Sì!</button>
-            <button class="btn btn-no" id="btn-no">Nah</button> 
-        </div>
-    </div>
-
-    <!-- 9. LA PAZZIA EXTRA: IL BOTTONE D'EMERGENZA -->
-    <button class="emergency-btn" id="emergency-btn">🚨 BOTTONE D'EMERGENZA 🚨<br><span style="font-size:0.8rem; font-weight:normal;">Premi solo in caso di mancanza acuta di coccole</span></button>
-
-    <!-- MODALE FINALE -->
-    <div class="modal" id="success-modal">
-        <div class="modal-content">
-            <h2>SIIIII! 🎉💜</h2>
-            <p>Eri già mia dal giorno zero, ma fa sempre piacere la conferma!</p>
-            <br>
-            <button class="btn" onclick="document.getElementById('success-modal').style.display='none'">Chiudi e vieni a baciarmi 💋</button>
-        </div>
-    </div>
-
-    <footer>Fatto con ❤️, infinito codice e pazzia d'amore per Viola.</footer>
-
     <script>
-        /* SFONDO ANIMATO */
-        const bgContainer = document.getElementById('floating-bg');
-        const symbols = ['💜', '🌸', '✨', '🤍', '☁️', '🥰'];
-        for(let i = 0; i < 25; i++) {
-            let el = document.createElement('div');
-            el.classList.add('float-item');
-            el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-            el.style.left = Math.random() * 100 + 'vw';
-            el.style.animationDuration = (Math.random() * 5 + 7) + 's';
-            el.style.animationDelay = Math.random() * 5 + 's';
-            bgContainer.appendChild(el);
+        // --- 0. BACKGROUND STELLE ---
+        const starContainer = document.getElementById('starContainer');
+        for(let i=0; i<100; i++) {
+            let star = document.createElement('div');
+            star.className = 'absolute bg-white rounded-full animate-twinkle';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.opacity = Math.random();
+            starContainer.appendChild(star);
         }
 
-        /* CONTATORE (Data 4 Settembre 2025) */
-        const startDate = new Date(2025, 8, 4, 0, 0, 0); 
-        setInterval(() => {
-            const diff = new Date() - startDate;
-            document.getElementById('days').innerText = Math.floor(diff / 86400000);
-            document.getElementById('hours').innerText = Math.floor((diff / 3600000) % 24);
-            document.getElementById('minutes').innerText = Math.floor((diff / 60000) % 60);
-            document.getElementById('seconds').innerText = Math.floor((diff / 1000) % 60);
-        }, 1000);
-
-        /* AMORE-METRO */
-        const meterBtn = document.getElementById('meter-btn');
-        meterBtn.addEventListener('click', () => {
-            meterBtn.disabled = true;
-            document.getElementById('meter-fill').style.width = '100%';
-            document.getElementById('meter-text').innerText = 'Calcolo in corso... 100%';
-            setTimeout(() => {
-                document.getElementById('meter-text').classList.add('shake');
-                document.getElementById('meter-text').innerText = 'ERRORE: LIVELLO ECCESSIVO!';
-                document.getElementById('meter-fill').style.background = 'linear-gradient(90deg, #ff4081, #d50000)';
-            }, 2000);
-            setTimeout(() => { document.getElementById('meter-text').innerText = '9999% - TI AMO DA IMPAZZIRE! 💥'; }, 4000);
-        });
-
-        /* GENERATORE FRASI */
-        const reasons = [
-            "Perché il tuo sorriso mi salva le giornate.", "Perché quando ridi fai quel verso buffissimo.",
-            "Perché hai sopportato me per 8 mesi (sei un'eroina).", "Perché i tuoi abbracci sanno di casa.",
-            "Perché mi capisci anche quando io non mi capisco.", "Perché sei bellissima in pigiama la domenica mattina.",
-            "Perché credi in me.", "Perché sei testarda come poche, ma hai il cuore d'oro.", "Per la luce nei tuoi occhi.",
-            "Perché sei la mia migliore amica.", "Perché mi rubi il cibo dal piatto.", "Perché ti amo da morire."
-        ];
-        document.getElementById('smile-btn').addEventListener('click', () => {
-            const res = document.getElementById('smile-result');
-            res.style.opacity = 0;
-            setTimeout(() => { res.innerText = `"${reasons[Math.floor(Math.random() * reasons.length)]}"`; res.style.opacity = 1; }, 200);
-        });
-
-        /* GIRADISCHI */
-        document.getElementById('play-btn').addEventListener('click', () => {
-            document.getElementById('record').classList.toggle('spin');
-        });
-
-        /* COUPON */
-        function redeemCoupon(el) { el.classList.add('redeemed'); }
-
-        /* QUIZ DINAMICO */
-        const quizData = [
-            { q: "Chi ha dato il primo bacio?", ans: "viola", yes: "Esatto! Hai preso l'iniziativa tu, e meno male! 🥰", no: "Ehi, non rubarmi il merito... l'hai dato tu per prima! 😜" },
-            { q: "Chi ha scritto per primo all'altro?", ans: "viola", yes: "Proprio tu! E benedico quel momento. 📱", no: "Sbagliato! Sei stata tu a fare il primo passo. 😎" },
-            { q: "Chi continuava a provarci spudoratamente?", ans: "io", yes: "Eh già, io non mollavo il colpo! 💪", no: "Ahahah magari! Ero io a farti la corte spietata. 😅" },
-            { q: "E chi continuava ad essere rifiutato all'inizio?", ans: "io", yes: "Sempre io... ma la costanza ripaga! 🥲💜", no: "No no, tu facevi la preziosa! Ero io lo sfigato rifiutato! 💔😂" },
-            { q: "Chi è il più testardo tra noi due?", ans: "viola", yes: "AHAHAH esatto! Meno male che lo ammetti! 😂", no: "Non fare finta di niente, sai benissimo che sei tu la testarda! 😌" },
-            { q: "Chi ruba le coperte di notte o ha sempre freddo?", ans: "viola", yes: "Ghiacciolo certificato! 🧊🛌", no: "Ma quando mai! Tu sei un termosifone al contrario! 🥶" }
-        ];
-        let currentQuestionIndex = 0;
+        // --- 1. CUORI GLOBALI ---
+        const heartBtn = document.getElementById('heartBtn');
+        const emojis = ['❤️', '💖', '💘', '💋'];
         
-        function loadQuestion() {
-            document.getElementById('quiz-q').innerText = quizData[currentQuestionIndex].q;
-            document.getElementById('quiz-fb').innerText = "";
-            document.getElementById('next-quiz-btn').style.display = "none";
-            document.getElementById('quiz-buttons-container').style.display = "flex";
+        heartBtn.addEventListener('click', () => {
+            const rect = heartBtn.getBoundingClientRect();
+            for(let i=0; i<20; i++) createHeartParticle(rect.left+30, rect.top+30);
+        });
+
+        function createHeartParticle(startX, startY) {
+            const h = document.createElement('div');
+            h.className = 'heart-particle drop-shadow-xl';
+            h.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            const tx = (Math.random() - 0.5) * 600 + 'px'; 
+            const ty = -(Math.random() * 800 + 300) + 'px'; 
+            h.style.left = startX + 'px'; h.style.top = startY + 'px';
+            h.style.setProperty('--tx', tx); h.style.setProperty('--ty', ty); h.style.setProperty('--rot', (Math.random()*360)+'deg');
+            h.style.animationDuration = (Math.random() * 1.5 + 1.5) + 's';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 3000);
         }
 
-        function checkQuiz(answer) {
-            const fb = document.getElementById('quiz-fb');
-            const current = quizData[currentQuestionIndex];
-            
-            if(answer === current.ans) {
-                fb.innerText = current.yes;
-                fb.style.color = "#4CAF50";
-                document.getElementById('quiz-buttons-container').style.display = "none";
+        // --- 2. SCROLL ENGINE (Nuvole, Treno e Aereo SVG Ricalibrati) ---
+        const reveals = document.querySelectorAll('.reveal');
+        const tTrack = document.getElementById('timelineTrack');
+        const tTrain = document.getElementById('timelineTrain');
+        const flightZone = document.getElementById('flightZone');
+        const flightPath = document.getElementById('flightProgress'); 
+        const svgPlane = document.getElementById('svgPlane');
+        const galleriaSection = document.getElementById('galleria');
+
+        let pathLength = 0;
+        if(flightPath) {
+            pathLength = flightPath.getTotalLength();
+            flightPath.style.strokeDasharray = pathLength;
+            flightPath.style.strokeDashoffset = pathLength;
+        }
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const wHeight = window.innerHeight;
+
+            // Fade in degli elementi
+            reveals.forEach(el => {
+                if (el.getBoundingClientRect().top < wHeight - 80) el.classList.add('active');
+            });
+
+            // Nuvole Parallasse dell'Hero
+            document.getElementById('cloudLeft').style.transform = `translateX(${-scrollY*0.3}px)`;
+            document.getElementById('cloudRight').style.transform = `translateX(${scrollY*0.3}px)`;
+            document.getElementById('cloudTop').style.transform = `translateY(${-scrollY*0.1}px)`;
+
+            // CALCOLO TRENO: Sincronizzazione millimetrica al centro dello schermo (Viewport Center)
+            const tContainer = document.getElementById('timelineContainer');
+            if(tContainer) {
+                const rect = tContainer.getBoundingClientRect();
+                const viewportCenter = wHeight / 2;
                 
-                // Se ci sono altre domande
-                if(currentQuestionIndex < quizData.length - 1) {
-                    document.getElementById('next-quiz-btn').style.display = "inline-block";
-                } else {
-                    document.getElementById('next-quiz-btn').style.display = "none";
-                    setTimeout(() => { fb.innerText = "Hai finito il quiz! Bravissima amore mio! 🎉💜"; }, 2000);
-                }
-            } else {
-                fb.innerText = current.no;
-                fb.style.color = "#F44336";
+                // Il treno si sposta in base a quanto la timeline attraversa la metà esatta dello schermo
+                let passedDistance = viewportCenter - rect.top;
+                let fill = (passedDistance / rect.height) * 100;
+                fill = Math.max(0, Math.min(100, fill));
+                
+                tTrack.style.height = `${fill}%`;
+                tTrain.style.transform = `translateX(-50%) rotate(${Math.sin(fill/8)*12}deg)`;
             }
-        }
 
-        function nextQuestion() {
-            currentQuestionIndex++;
-            loadQuestion();
-        }
+            // CALCOLO AEREO SVG: Progressivo rispetto all'arrivo della sezione "I Nostri Frammenti"
+            if(flightZone && pathLength > 0 && galleriaSection) {
+                const zoneRect = flightZone.getBoundingClientRect();
+                const galleriaRect = galleriaSection.getBoundingClientRect();
+                
+                const docScroll = window.scrollY;
+                const startScroll = docScroll + zoneRect.top - wHeight;
+                const endScroll = docScroll + galleriaRect.top - wHeight; // Fine corsa esatta all'entrata della galleria
+                
+                let progress = (docScroll - startScroll) / (endScroll - startScroll);
+                progress = Math.max(0, Math.min(1, progress));
+                
+                flightPath.style.strokeDashoffset = pathLength - (pathLength * progress);
+                
+                const point = flightPath.getPointAtLength(pathLength * progress);
+                const scaleX = flightZone.clientWidth / 1000;
+                const scaleY = flightZone.clientHeight / 300;
+                
+                const pX = point.x * scaleX;
+                const pY = point.y * scaleY;
+
+                // Tangente per la rotazione realistica lungo la traiettoria (aggiunto -45deg per compensare la diagonale di FontAwesome)
+                const p2 = flightPath.getPointAtLength(Math.min(pathLength, pathLength * progress + 2));
+                const angle = Math.atan2((p2.y - point.y)*scaleY, (p2.x - point.x)*scaleX) * 180 / Math.PI;
+
+                svgPlane.style.transform = `translate(${pX - 16}px, ${pY - 16}px) rotate(${angle - 45}deg) scale(${1 + progress * 0.4})`;
+            }
+        });
+
+        // --- 3. ARCADE: SENSORE CUORE 2.0 ---
+        let hEnergy = 0, hInterval;
+        const sBtn = document.getElementById('sensorBtn');
+        const sBar = document.getElementById('energyBar');
+        const sTxt = document.getElementById('energyPhrase');
         
-        // Carica la prima domanda all'avvio
-        loadQuestion();
+        const hDown = (e) => { e.preventDefault(); sBtn.style.transform='scale(0.9)'; sBtn.querySelector('i').classList.replace('text-slate-500','text-rose-500'); hInterval = setInterval(fillHeart, 40); };
+        const hUp = () => { clearInterval(hInterval); sBtn.style.transform='scale(1)'; sBtn.querySelector('i').classList.replace('text-rose-500','text-slate-500'); if(hEnergy<100){ let d = setInterval(()=>{ hEnergy-=2; if(hEnergy<=0){hEnergy=0; clearInterval(d);} updateHBar(); },20); } };
+        
+        sBtn.addEventListener('mousedown', hDown); sBtn.addEventListener('mouseup', hUp); sBtn.addEventListener('mouseleave', hUp);
+        sBtn.addEventListener('touchstart', hDown, {passive:false}); sBtn.addEventListener('touchend', hUp);
 
-        /* LETTERA */
-        document.getElementById('envelope').addEventListener('click', function() { this.classList.toggle('open'); });
-
-        /* BOTTONE FUGGITIVO (FIXATO) */
-        const btnNo = document.getElementById('btn-no');
-        const cage = document.getElementById('runaway-cage');
-        let isAbsolute = false;
-
-        function moveNo() {
-            // Solo al primo passaggio il bottone diventa absolute, staccandosi in modo fluido dal SI'
-            if (!isAbsolute) {
-                btnNo.style.position = 'absolute';
-                isAbsolute = true;
+        function fillHeart() {
+            hEnergy += 1.5; if(hEnergy>100) hEnergy = 100;
+            updateHBar();
+            if(hEnergy === 100) {
+                clearInterval(hInterval);
+                document.getElementById('heartGameBox').innerHTML = `<div class="animate-heartbeat text-rose-500"><i class="fa-solid fa-heart text-6xl shadow-[0_0_50px_rgba(244,63,94,1)] rounded-full"></i></div><p class="mt-4 font-bold text-white text-lg">SEI IL MIO UNIVERSO ❤️</p>`;
+                heartBtn.click();
             }
-            
-            // Calcola limiti gabbia
-            const maxX = cage.clientWidth - btnNo.offsetWidth - 20; 
-            const maxY = cage.clientHeight - btnNo.offsetHeight - 20;
-            
-            const randomX = Math.max(20, Math.random() * maxX);
-            const randomY = Math.max(100, Math.random() * maxY); // 100px per non andare sul testo
-
-            btnNo.style.left = randomX + 'px';
-            btnNo.style.top = randomY + 'px';
+        }
+        function updateHBar() {
+            sBar.style.width = `${hEnergy}%`;
+            if(hEnergy<25) sTxt.innerText="Leggendo i ricordi di coppia...";
+            else if(hEnergy<50) sTxt.innerText="Brividi da primo bacio a Rosolina...";
+            else if(hEnergy<75) sTxt.innerText="Vibrazioni di treni e viaggi in corso...";
+            else if(hEnergy<99) sTxt.innerText="Pronto ad esplodere di puro amore!";
         }
 
-        btnNo.addEventListener('mouseover', moveNo);
-        btnNo.addEventListener('touchstart', (e) => { e.preventDefault(); moveNo(); }, {passive: false});
-
-        /* CORIANDOLI E SUCCESSO */
-        document.getElementById('btn-yes').addEventListener('click', () => {
-            document.getElementById('success-modal').style.display = 'flex';
-            const colors = ['#CE93D8', '#E1BEE7', '#4A148C', '#FFFFFF', '#ff4081'];
-            for(let i=0; i<80; i++) {
-                let conf = document.createElement('div');
-                conf.classList.add('confetti');
-                conf.style.left = Math.random() * 100 + 'vw';
-                conf.style.top = -10 + 'px';
-                conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                conf.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                conf.style.animationDelay = Math.random() * 1 + 's';
-                document.body.appendChild(conf);
-            }
-        });
-
-        /* PAZZIA EXTRA: BOTTONE EMERGENZA */
-        document.getElementById('emergency-btn').addEventListener('click', () => {
-            for(let i=0; i<30; i++) {
+        // --- 4. ARCADE: MEMORY ---
+        const mIcons = ['🏖️', '🗽', '💋', '🚂', '🏖️', '🗽', '💋', '🚂'];
+        let mF = [], mM = 0;
+        document.getElementById('memoryBoard').innerHTML = [...mIcons].sort(()=>Math.random()-0.5).map((ic, i)=>
+            `<button onclick="fc(this, '${ic}')" class="w-12 h-12 bg-slate-800 rounded-lg text-xl flex items-center justify-center transition-all"><span class="opacity-0 scale-50 transition-all">${ic}</span></button>`
+        ).join('');
+        function fc(btn, ic) {
+            if(mF.length===2 || btn.classList.contains('mat') || btn.firstChild.classList.contains('opacity-100')) return;
+            btn.firstChild.classList.replace('opacity-0', 'opacity-100'); btn.firstChild.classList.replace('scale-50', 'scale-100');
+            mF.push({btn, ic});
+            if(mF.length===2) {
                 setTimeout(() => {
-                    let heart = document.createElement('div');
-                    heart.innerHTML = '💜';
-                    heart.classList.add('mega-heart');
-                    heart.style.left = Math.random() * 100 + 'vw';
-                    // Varia la grandezza
-                    heart.style.fontSize = (Math.random() * 4 + 2) + 'rem';
-                    document.body.appendChild(heart);
-                    
-                    // Rimuovi dopo l'animazione
-                    setTimeout(() => { heart.remove(); }, 3000);
-                }, i * 100); // Ne spara uno ogni 100ms
+                    if(mF[0].ic === mF[1].ic) { mF.forEach(x => { x.btn.classList.add('mat','bg-emerald-900/50'); }); mM+=2; if(mM===mIcons.length) heartBtn.click(); }
+                    else { mF.forEach(x => { x.btn.firstChild.classList.replace('opacity-100','opacity-0'); x.btn.firstChild.classList.replace('scale-100','scale-50'); }); }
+                    mF = [];
+                }, 600);
             }
-        });
+        }
+
+        // --- 5. ARCADE: TRIVIA ---
+        const trQs = [ {q:"Dove ci siamo baciati la prima volta?",o:["Torino","Milano","Rosolina"],c:2}, {q:"Giorno esatto di inizio relazione?",o:["22 Agosto","4 Settembre","1 Luglio"],c:1}, {q:"Dove andremo per il primo anniversario?",o:["Parigi","New York","Londra"],c:1} ];
+        let trI = 0;
+        function loadT(){
+            if(trI>=trQs.length) { document.getElementById('quizApp').innerHTML=`<p class="text-white text-center font-bold">Quiz Perfetto! ❤️</p>`; heartBtn.click(); return; }
+            const d = trQs[trI]; document.getElementById('qText').innerText=d.q;
+            document.getElementById('qOpts').innerHTML = d.o.map((o,i)=>`<button onclick="tck(this,${i},${d.c})" class="w-full text-left p-2 text-xs bg-slate-900 border border-slate-700 rounded mb-2">${o}</button>`).join('');
+        }
+        function tck(b, i, c){
+            let p = b.parentElement.children; for(let x of p) x.disabled=true;
+            if(i===c){ b.classList.add('bg-emerald-600'); document.getElementById('qNextBtn').classList.remove('hidden'); }
+            else { b.classList.add('bg-rose-600'); p[c].classList.add('bg-emerald-600'); document.getElementById('qNextBtn').classList.remove('hidden'); }
+        }
+        document.getElementById('qNextBtn').onclick = () => { trI++; document.getElementById('qNextBtn').classList.add('hidden'); loadT(); };
+        loadT();
+
+        // --- 6. ARCADE: SLOT MACHINE ---
+        const sEmojis = ['🗽', '❤️', '🏖️', '🚆'];
+        function spinSlot() {
+            const boxes = [document.getElementById('slot1'), document.getElementById('slot2'), document.getElementById('slot3')];
+            let spins = 0;
+            const spinInt = setInterval(() => {
+                boxes.forEach(b => b.innerText = sEmojis[Math.floor(Math.random() * sEmojis.length)]);
+                spins++;
+                if(spins > 15) {
+                    clearInterval(spinInt);
+                    let win = Math.random() > 0.4;
+                    if(win) {
+                        let e = sEmojis[Math.floor(Math.random() * sEmojis.length)];
+                        boxes.forEach(b => b.innerText = e);
+                        document.getElementById('slotMsg').innerText = "Hai Vinto! Connessione Sbloccata!";
+                        heartBtn.click();
+                    } else {
+                        document.getElementById('slotMsg').innerText = "Il destino richiede un altro tentativo!";
+                    }
+                }
+            }, 100);
+        }
+
+        // --- 7. ARCADE: LOVE SNAKE (Canvas Ingrandito a 240x240, Griglia Fluidissima) ---
+        const sCan = document.getElementById('snakeCanvas'); const sCtx = sCan.getContext('2d');
+        const ts = 12; // 240 / 12 = 20 caselle di griglia
+        let snk = [], f = {}, sdx = 1, sdy = 0, sLoop, sAct = false;
+        function initS() { snk=[{x:9,y:9}]; sdx=1; sdy=0; spf(); }
+        function spf() { f = {x:Math.floor(Math.random()*19), y:Math.floor(Math.random()*19), e:['💋','❤️'][Math.floor(Math.random()*2)]}; }
+        function startSnake() { document.getElementById('snakeOverlay').classList.add('hidden'); initS(); if(sAct) clearInterval(sLoop); sAct=true; sLoop = setInterval(updS, 80); } // Loop velocizzato per frame rate perfetto
+        function updS() {
+            let h = {x: snk[0].x+sdx, y: snk[0].y+sdy};
+            if(h.x<0||h.x>=20||h.y<0||h.y>=20 || snk.some(s=>s.x===h.x&&s.y===h.y)) { sAct=false; clearInterval(sLoop); document.getElementById('snakeOverlay').classList.remove('hidden'); return; }
+            snk.unshift(h);
+            if(h.x===f.x && h.y===f.y) { spf(); } else { snk.pop(); }
+            drS();
+        }
+        function drS() {
+            sCtx.fillStyle='#0f172a'; sCtx.fillRect(0,0,240,240);
+            sCtx.font='12px Arial'; sCtx.fillText(f.e, f.x*ts, f.y*ts+10);
+            snk.forEach((s,i)=>{ sCtx.fillStyle = i===0?'#f43f5e':'#fb7185'; sCtx.fillRect(s.x*ts, s.y*ts, ts-1, ts-1); });
+        }
+        function changeSnakeDir(x,y) { if(!sAct || (x!==0 && sdx===-x) || (y!==0 && sdy===-y)) return; sdx=x; sdy=y; }
+        document.addEventListener('keydown', e => { if(!sAct)return; if(e.key==='ArrowUp')changeSnakeDir(0,-1); if(e.key==='ArrowDown')changeSnakeDir(0,1); if(e.key==='ArrowLeft')changeSnakeDir(-1,0); if(e.key==='ArrowRight')changeSnakeDir(1,0); });
+        sCtx.fillStyle='#0f172a'; sCtx.fillRect(0,0,240,240);
+
+        // --- 8. ARCADE: PIOGGIA DI BACI ---
+        const cCan = document.getElementById('catcherCanvas'); const cCtx = cCan.getContext('2d');
+        let cAct = false, bx = 100, drops = [], score = 0;
+        function startCatcher() {
+            document.getElementById('catcherOverlay').classList.add('hidden');
+            cAct = true; score = 0; drops = []; bx = 100;
+            requestAnimationFrame(cLoop);
+        }
+        function cLoop() {
+            if(!cAct) return;
+            cCtx.fillStyle = '#0f172a'; cCtx.fillRect(0,0,250,187);
+            cCtx.font = '24px Arial'; cCtx.fillText('🧺', bx, 175);
+            
+            if(Math.random() < 0.05) drops.push({x: Math.random()*220, y:-20, speed: Math.random()*2+1.5});
+            
+            for(let i=drops.length-1; i>=0; i--) {
+                let d = drops[i]; d.y += d.speed;
+                cCtx.fillText('💋', d.x, d.y);
+                if(d.y > 155 && d.y < 185 && d.x > bx-10 && d.x < bx+30) { score++; drops.splice(i, 1); if(score%5===0) heartBtn.click(); }
+                else if(d.y > 190) { drops.splice(i, 1); }
+            }
+            
+            cCtx.fillStyle = '#f8fafc'; cCtx.font = '12px Arial'; cCtx.fillText(`Baci: ${score}`, 10, 20);
+            
+            if(score < 15) requestAnimationFrame(cLoop);
+            else { 
+                cCtx.fillStyle='rgba(15,23,42,0.8)'; cCtx.fillRect(0,0,250,187); 
+                cCtx.fillStyle='#f43f5e'; cCtx.font='16px Arial'; cCtx.fillText('Vittoria d\'Amore!', 60, 90);
+                cAct = false;
+                document.getElementById('catcherOverlay').classList.remove('hidden');
+            }
+        }
+        const cCont = document.getElementById('catcherContainer');
+        cCont.addEventListener('mousemove', e => { if(cAct){ let rect = cCan.getBoundingClientRect(); bx = e.clientX - rect.left - 12; } });
+        cCont.addEventListener('touchmove', e => { if(cAct){ let rect = cCan.getBoundingClientRect(); bx = e.touches[0].clientX - rect.left - 12; e.preventDefault(); } }, {passive: false});
+
     </script>
 </body>
 </html>
